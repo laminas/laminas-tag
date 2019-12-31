@@ -1,17 +1,18 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-tag for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-tag/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Tag\Cloud\Decorator;
+namespace Laminas\Tag\Cloud\Decorator;
 
+use Laminas\Escaper\Escaper;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Tag\Cloud\Decorator\DecoratorInterface as Decorator;
+use Laminas\Tag\Exception;
 use Traversable;
-use Zend\Escaper\Escaper;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Tag\Cloud\Decorator\DecoratorInterface as Decorator;
-use Zend\Tag\Exception;
 
 /**
  * Abstract class for decorators

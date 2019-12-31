@@ -1,17 +1,18 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-tag for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-tag/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Tag;
+namespace Laminas\Tag;
 
 use ArrayAccess;
 use Countable;
+use Laminas\Tag\Exception\InvalidArgumentException;
+use Laminas\Tag\Exception\OutOfBoundsException;
 use SeekableIterator;
-use Zend\Tag\Exception\InvalidArgumentException;
-use Zend\Tag\Exception\OutOfBoundsException;
 
 class ItemList implements Countable, SeekableIterator, ArrayAccess
 {
@@ -191,7 +192,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @param  mixed          $offset
      * @param  TaggableInterface $item
-     * @throws OutOfBoundsException When item does not implement Zend\Tag\TaggableInterface
+     * @throws OutOfBoundsException When item does not implement Laminas\Tag\TaggableInterface
      * @return void
      */
     public function offsetSet($offset, $item)
@@ -199,7 +200,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
         // We need to make that check here, as the method signature must be
         // compatible with ArrayAccess::offsetSet()
         if (! ($item instanceof TaggableInterface)) {
-            throw new OutOfBoundsException('Item must implement Zend\Tag\TaggableInterface');
+            throw new OutOfBoundsException('Item must implement Laminas\Tag\TaggableInterface');
         }
 
         if ($offset === null) {
