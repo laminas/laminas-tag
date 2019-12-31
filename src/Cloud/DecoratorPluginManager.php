@@ -1,16 +1,17 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-tag for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-tag/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Tag\Cloud;
+namespace Laminas\Tag\Cloud;
 
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\Exception\InvalidServiceException;
+use Laminas\ServiceManager\Factory\InvokableFactory;
 use RuntimeException;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\Exception\InvalidServiceException;
-use Zend\ServiceManager\Factory\InvokableFactory;
 
 /**
  * Plugin manager implementation for decorators.
@@ -32,6 +33,14 @@ class DecoratorPluginManager extends AbstractPluginManager
         'HtmlTag'   => Decorator\HtmlTag::class,
         'tag'       => Decorator\HtmlTag::class,
         'Tag'       => Decorator\HtmlTag::class,
+
+        // Legacy Zend Framework aliases
+        \Zend\Tag\Cloud\Decorator\HtmlCloud::class => Decorator\HtmlCloud::class,
+        \Zend\Tag\Cloud\Decorator\HtmlTag::class => Decorator\HtmlTag::class,
+
+        // v2 normalized FQCNs
+        'zendtagclouddecoratorhtmlcloud' => Decorator\HtmlCloud::class,
+        'zendtagclouddecoratorhtmltag' => Decorator\HtmlTag::class,
     ];
 
     protected $factories = [
@@ -40,8 +49,8 @@ class DecoratorPluginManager extends AbstractPluginManager
         // Legacy (v2) due to alias resolution; canonical form of resolved
         // alias is used to look up the factory, while the non-normalized
         // resolved alias is used as the requested name passed to the factory.
-        'zendtagclouddecoratorhtmlcloud' => InvokableFactory::class,
-        'zendtagclouddecoratorhtmltag'   => InvokableFactory::class
+        'laminastagclouddecoratorhtmlcloud' => InvokableFactory::class,
+        'laminastagclouddecoratorhtmltag'   => InvokableFactory::class
     ];
 
     protected $instanceOf = Decorator\DecoratorInterface::class;

@@ -1,17 +1,18 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-tag for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-tag/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Tag;
+namespace LaminasTest\Tag;
 
+use Laminas\Tag;
 use PHPUnit\Framework\TestCase;
-use Zend\Tag;
 
 /**
- * @group      Zend_Tag
+ * @group      Laminas_Tag
  */
 class ItemListTest extends TestCase
 {
@@ -60,7 +61,7 @@ class ItemListTest extends TestCase
         }
         $list->seek(2);
 
-        $this->expectException('Zend\Tag\Exception\OutOfBoundsException');
+        $this->expectException('Laminas\Tag\Exception\OutOfBoundsException');
         $this->expectExceptionMessage('Invalid seek position');
         $list->seek(3);
     }
@@ -69,8 +70,8 @@ class ItemListTest extends TestCase
     {
         $list = new Tag\ItemList();
 
-        $this->expectException('\Zend\Tag\Exception\OutOfBoundsException');
-        $this->expectExceptionMessage('Item must implement Zend\Tag\TaggableInterface');
+        $this->expectException('\Laminas\Tag\Exception\OutOfBoundsException');
+        $this->expectExceptionMessage('Item must implement Laminas\Tag\TaggableInterface');
         $list[] = 'test';
     }
 
@@ -118,7 +119,7 @@ class ItemListTest extends TestCase
     {
         $list = new Tag\ItemList();
 
-        $this->expectException('Zend\Tag\Exception\InvalidArgumentException');
+        $this->expectException('Laminas\Tag\Exception\InvalidArgumentException');
         $this->expectExceptionMessage('Value list may not be empty');
         $list->spreadWeightValues([]);
     }
