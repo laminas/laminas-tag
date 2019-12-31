@@ -1,10 +1,9 @@
 docs_dir: doc/book
 site_dir: doc/html
-pages:
+nav:
     - index.md
     - "Quick Start": quick-start.md
     - "Tag Clouds": tag-cloud.md
-site_name: zend-tag
-site_description: Zend\Tag
-repo_url: 'https://github.com/zendframework/zend-tag'
-copyright: 'Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
+site_name: laminas-tag
+site_description: Laminas\Tag
+repo_url: 'https://github.com/laminas/laminas-tag'

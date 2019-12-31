@@ -6,8 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#11](https://github.com/zendframework/zend-tag/pull/11) adds documentation
-  and publishes it to https://zendframework.github.io/zend-tag/
+- [zendframework/zend-tag#11](https://github.com/zendframework/zend-tag/pull/11) adds documentation
+  and publishes it to https://docs.laminas.dev/laminas-tag/
 
 ### Deprecated
 
@@ -19,6 +19,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#3](https://github.com/zendframework/zend-tag/pull/3) and
-  [#10](https://github.com/zendframework/zend-tag/pull/10) update the component
-  to be forward-compatible with zend-servicemanager v3.
+- [zendframework/zend-tag#3](https://github.com/zendframework/zend-tag/pull/3) and
+  [zendframework/zend-tag#10](https://github.com/zendframework/zend-tag/pull/10) update the component
+  to be forward-compatible with laminas-servicemanager v3.

@@ -1,21 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Tag\Cloud\Decorator;
+namespace LaminasTest\Tag\Cloud\Decorator;
 
 use ArrayObject;
-use Zend\Tag;
-use Zend\Tag\Cloud\Decorator;
+use Laminas\Tag;
+use Laminas\Tag\Cloud\Decorator;
 
 /**
- * @group      Zend_Tag
- * @group      Zend_Tag_Cloud
+ * @group      Laminas_Tag
+ * @group      Laminas_Tag_Cloud
  */
 class HtmlTagTest extends \PHPUnit_Framework_TestCase
 {
@@ -70,7 +69,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Classlist is empty');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Classlist is empty');
         $decorator->setClassList([]);
     }
 
@@ -78,7 +77,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Classlist contains an invalid classname');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Classlist contains an invalid classname');
         $decorator->setClassList([[]]);
     }
 
@@ -86,7 +85,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Invalid fontsize unit specified');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Invalid fontsize unit specified');
         $decorator->setFontSizeUnit('foo');
     }
 
@@ -94,7 +93,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Fontsize must be numeric');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Fontsize must be numeric');
         $decorator->setMinFontSize('foo');
     }
 
@@ -102,7 +101,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Fontsize must be numeric');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Fontsize must be numeric');
         $decorator->setMaxFontSize('foo');
     }
 
@@ -117,7 +116,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
 
     /**
      * This test uses ArrayObject, which will have essentially the
-     * same behavior as Zend\Config\Config; the code is looking only
+     * same behavior as Laminas\Config\Config; the code is looking only
      * for a Traversable.
      */
     public function testConstructorWithConfig()
@@ -192,7 +191,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHTMLTags($tags);
-        $this->setExpectedException('Zend\Tag\Exception\InvalidElementNameException');
+        $this->setExpectedException('Laminas\Tag\Exception\InvalidElementNameException');
         $decorator->render($this->getTags());
     }
 
@@ -224,7 +223,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHTMLTags($tags);
-        $this->setExpectedException('Zend\Tag\Exception\InvalidAttributeNameException');
+        $this->setExpectedException('Laminas\Tag\Exception\InvalidAttributeNameException');
         $decorator->render($this->getTags());
     }
 }
