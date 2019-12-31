@@ -1,21 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Tag
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Tag\Cloud\TestAsset;
+namespace LaminasTest\Tag\Cloud\TestAsset;
 
 /**
- * @category   Zend
- * @package    Zend_Tag
+ * @category   Laminas
+ * @package    Laminas_Tag
  * @subpackage UnitTests
  */
-class CloudDummy2 extends \Zend\Tag\Cloud\Decorator\HtmlCloud
+class CloudDummy2 extends \Laminas\Tag\Cloud\Decorator\HtmlCloud
 {
     protected $_foo;
 
