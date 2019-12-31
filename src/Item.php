@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Tag;
+namespace Laminas\Tag;
 
+use Laminas\Stdlib\ArrayUtils;
 use Traversable;
-use Zend\Stdlib\ArrayUtils;
 
 class Item implements TaggableInterface
 {
@@ -49,9 +48,9 @@ class Item implements TaggableInterface
      * Create a new tag according to the options
      *
      * @param  array|Traversable $options
-     * @throws \Zend\Tag\Exception\InvalidArgumentException When invalid options are provided
-     * @throws \Zend\Tag\Exception\InvalidArgumentException When title was not set
-     * @throws \Zend\Tag\Exception\InvalidArgumentException When weight was not set
+     * @throws \Laminas\Tag\Exception\InvalidArgumentException When invalid options are provided
+     * @throws \Laminas\Tag\Exception\InvalidArgumentException When title was not set
+     * @throws \Laminas\Tag\Exception\InvalidArgumentException When weight was not set
      */
     public function __construct($options)
     {
@@ -78,7 +77,7 @@ class Item implements TaggableInterface
      * Set options of the tag
      *
      * @param  array $options
-     * @return \Zend\Tag\Item
+     * @return \Laminas\Tag\Item
      */
     public function setOptions(array $options)
     {
@@ -97,7 +96,7 @@ class Item implements TaggableInterface
     }
 
     /**
-     * Defined by Zend\Tag\TaggableInterface
+     * Defined by Laminas\Tag\TaggableInterface
      *
      * @return string
      */
@@ -110,8 +109,8 @@ class Item implements TaggableInterface
      * Set the title
      *
      * @param  string $title
-     * @throws \Zend\Tag\Exception\InvalidArgumentException When title is no string
-     * @return \Zend\Tag\Item
+     * @throws \Laminas\Tag\Exception\InvalidArgumentException When title is no string
+     * @return \Laminas\Tag\Item
      */
     public function setTitle($title)
     {
@@ -124,7 +123,7 @@ class Item implements TaggableInterface
     }
 
     /**
-     * Defined by Zend\Tag\TaggableInterface
+     * Defined by Laminas\Tag\TaggableInterface
      *
      * @return float
      */
@@ -137,8 +136,8 @@ class Item implements TaggableInterface
      * Set the weight
      *
      * @param  float $weight
-     * @throws \Zend\Tag\Exception\InvalidArgumentException When weight is not numeric
-     * @return \Zend\Tag\Item
+     * @throws \Laminas\Tag\Exception\InvalidArgumentException When weight is not numeric
+     * @return \Laminas\Tag\Item
      */
     public function setWeight($weight)
     {
@@ -154,7 +153,7 @@ class Item implements TaggableInterface
      * Set multiple params at once
      *
      * @param  array $params
-     * @return \Zend\Tag\Item
+     * @return \Laminas\Tag\Item
      */
     public function setParams(array $params)
     {
@@ -166,11 +165,11 @@ class Item implements TaggableInterface
     }
 
     /**
-     * Defined by Zend\Tag\TaggableInterface
+     * Defined by Laminas\Tag\TaggableInterface
      *
      * @param  string $name
      * @param  mixed  $value
-     * @return \Zend\Tag\Item
+     * @return \Laminas\Tag\Item
      */
     public function setParam($name, $value)
     {
@@ -179,7 +178,7 @@ class Item implements TaggableInterface
     }
 
     /**
-     * Defined by Zend\Tag\TaggableInterface
+     * Defined by Laminas\Tag\TaggableInterface
      *
      * @param  string $name
      * @return mixed
