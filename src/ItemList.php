@@ -1,24 +1,22 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Tag
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Tag;
+namespace Laminas\Tag;
 
 use ArrayAccess;
 use Countable;
+use Laminas\Tag\Exception\InvalidArgumentException;
+use Laminas\Tag\Exception\OutOfBoundsException;
 use SeekableIterator;
-use Zend\Tag\Exception\InvalidArgumentException;
-use Zend\Tag\Exception\OutOfBoundsException;
 
 /**
- * @category   Zend
- * @package    Zend_Tag
+ * @category   Laminas
+ * @package    Laminas_Tag
  */
 class ItemList implements Countable, SeekableIterator, ArrayAccess
 {
@@ -198,7 +196,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @param  mixed          $offset
      * @param  TaggableInterface $item
-     * @throws OutOfBoundsException When item does not implement Zend\Tag\TaggableInterface
+     * @throws OutOfBoundsException When item does not implement Laminas\Tag\TaggableInterface
      * @return void
      */
     public function offsetSet($offset, $item)
@@ -206,7 +204,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
         // We need to make that check here, as the method signature must be
         // compatible with ArrayAccess::offsetSet()
         if (!($item instanceof TaggableInterface)) {
-            throw new OutOfBoundsException('Item must implement Zend\Tag\TaggableInterface');
+            throw new OutOfBoundsException('Item must implement Laminas\Tag\TaggableInterface');
         }
 
         if ($offset === null) {
