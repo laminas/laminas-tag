@@ -1,16 +1,15 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Tag\Cloud;
+namespace Laminas\Tag\Cloud;
 
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\Tag\Exception;
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\Tag\Exception;
 
 /**
  * Plugin manager implementation for decorators.
@@ -27,9 +26,9 @@ class DecoratorPluginManager extends AbstractPluginManager
      * @var array
      */
     protected $invokableClasses = array(
-        'htmlcloud' => 'Zend\Tag\Cloud\Decorator\HtmlCloud',
-        'htmltag'   => 'Zend\Tag\Cloud\Decorator\HtmlTag',
-        'tag'       => 'Zend\Tag\Cloud\Decorator\HtmlTag',
+        'htmlcloud' => 'Laminas\Tag\Cloud\Decorator\HtmlCloud',
+        'htmltag'   => 'Laminas\Tag\Cloud\Decorator\HtmlTag',
+        'tag'       => 'Laminas\Tag\Cloud\Decorator\HtmlTag',
    );
 
     /**
