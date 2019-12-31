@@ -1,23 +1,21 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Tag
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Tag\Cloud\Decorator;
+namespace Laminas\Tag\Cloud\Decorator;
 
-use Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException;
-use Zend\Tag\ItemList;
+use Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException;
+use Laminas\Tag\ItemList;
 
 /**
  * Simple HTML decorator for tags
  *
- * @category  Zend
- * @package   Zend_Tag
+ * @category  Laminas
+ * @package   Laminas_Tag
  */
 class HtmlTag extends AbstractTag
 {
@@ -247,7 +245,7 @@ class HtmlTag extends AbstractTag
     {
         if (!$tags instanceof ItemList) {
             throw new InvalidArgumentException(sprintf(
-                'HtmlTag::render() expects a Zend\Tag\ItemList argument; received "%s"',
+                'HtmlTag::render() expects a Laminas\Tag\ItemList argument; received "%s"',
                 (is_object($tags) ? get_class($tags) : gettype($tags))
             ));
         }

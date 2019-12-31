@@ -1,23 +1,21 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Tag
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Tag\Cloud\Decorator;
+namespace LaminasTest\Tag\Cloud\Decorator;
 
-use Zend\Tag\Cloud\Decorator;
+use Laminas\Tag\Cloud\Decorator;
 
 /**
- * @category   Zend
- * @package    Zend_Tag
+ * @category   Laminas
+ * @package    Laminas_Tag
  * @subpackage UnitTests
- * @group      Zend_Tag
- * @group      Zend_Tag_Cloud
+ * @group      Laminas_Tag
+ * @group      Laminas_Tag_Cloud
  */
 class HtmlCloudTest extends \PHPUnit_Framework_TestCase
 {
@@ -25,7 +23,7 @@ class HtmlCloudTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlCloud();
 
-        $this->assertEquals('<ul class="Zend\Tag\Cloud">foo bar</ul>', $decorator->render(array('foo', 'bar')));
+        $this->assertEquals('<ul class="Laminas\Tag\Cloud">foo bar</ul>', $decorator->render(array('foo', 'bar')));
     }
 
     public function testNestedTags()
@@ -41,7 +39,7 @@ class HtmlCloudTest extends \PHPUnit_Framework_TestCase
         $decorator = new Decorator\HtmlCloud();
         $decorator->setSeparator('-');
 
-        $this->assertEquals('<ul class="Zend\Tag\Cloud">foo-bar</ul>', $decorator->render(array('foo', 'bar')));
+        $this->assertEquals('<ul class="Laminas\Tag\Cloud">foo-bar</ul>', $decorator->render(array('foo', 'bar')));
     }
 
     public function testConstructorWithArray()
@@ -53,7 +51,7 @@ class HtmlCloudTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructorWithConfig()
     {
-        $decorator = new Decorator\HtmlCloud(new \Zend\Config\Config(array('htmlTags' => array('div'), 'separator' => ' ')));
+        $decorator = new Decorator\HtmlCloud(new \Laminas\Config\Config(array('htmlTags' => array('div'), 'separator' => ' ')));
 
         $this->assertEquals('<div>foo bar</div>', $decorator->render(array('foo', 'bar')));
     }

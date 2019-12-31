@@ -1,25 +1,23 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Tag
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Tag\Cloud\Decorator;
+namespace LaminasTest\Tag\Cloud\Decorator;
 
-use	Zend\Tag,
-    Zend\Tag\Cloud\Decorator,
-    Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException;
+use	Laminas\Tag;
+use Laminas\Tag\Cloud\Decorator;
+use Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException;
 
 /**
- * @category   Zend
- * @package    Zend_Tag
+ * @category   Laminas
+ * @package    Laminas_Tag
  * @subpackage UnitTests
- * @group      Zend_Tag
- * @group      Zend_Tag_Cloud
+ * @group      Laminas_Tag
+ * @group      Laminas_Tag_Cloud
  */
 class HtmlTagTest extends \PHPUnit_Framework_TestCase
 {
@@ -76,7 +74,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
 
         try {
             $decorator->setClassList(array());
-            $this->fail('An expected Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
+            $this->fail('An expected Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
         } catch (InvalidArgumentException $e) {
             $this->assertEquals($e->getMessage(), 'Classlist is empty');
         }
@@ -88,7 +86,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
 
         try {
             $decorator->setClassList(array(array()));
-            $this->fail('An expected Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
+            $this->fail('An expected Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
         } catch (InvalidArgumentException $e) {
             $this->assertEquals($e->getMessage(), 'Classlist contains an invalid classname');
         }
@@ -100,7 +98,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
 
         try {
             $decorator->setFontSizeUnit('foo');
-            $this->fail('An expected Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
+            $this->fail('An expected Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
         } catch (InvalidArgumentException $e) {
             $this->assertEquals($e->getMessage(), 'Invalid fontsize unit specified');
         }
@@ -112,7 +110,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
 
         try {
             $decorator->setMinFontSize('foo');
-            $this->fail('An expected Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
+            $this->fail('An expected Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
         } catch (InvalidArgumentException $e) {
             $this->assertEquals($e->getMessage(), 'Fontsize must be numeric');
         }
@@ -124,7 +122,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
 
         try {
             $decorator->setMaxFontSize('foo');
-            $this->fail('An expected Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
+            $this->fail('An expected Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException was not raised');
         } catch (InvalidArgumentException $e) {
             $this->assertEquals($e->getMessage(), 'Fontsize must be numeric');
         }
@@ -141,7 +139,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructorWithConfig()
     {
-        $decorator = new Decorator\HtmlTag(new \Zend\Config\Config(array('minFontSize' => 5, 'maxFontSize' => 10, 'fontSizeUnit' => 'pt')));
+        $decorator = new Decorator\HtmlTag(new \Laminas\Config\Config(array('minFontSize' => 5, 'maxFontSize' => 10, 'fontSizeUnit' => 'pt')));
 
         $this->assertEquals(5, $decorator->getMinFontSize());
         $this->assertEquals(10, $decorator->getMaxFontSize());

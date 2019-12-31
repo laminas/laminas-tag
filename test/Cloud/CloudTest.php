@@ -1,27 +1,25 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Tag
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Tag\Cloud;
+namespace LaminasTest\Tag\Cloud;
 
-use Zend\Tag;
-use Zend\Tag\Cloud;
-use Zend\Tag\Cloud\DecoratorPluginManager;
-use Zend\Tag\Exception\InvalidArgumentException;
-use ZendTest\Tag\Cloud\TestAsset;
+use Laminas\Tag;
+use Laminas\Tag\Cloud;
+use Laminas\Tag\Cloud\DecoratorPluginManager;
+use Laminas\Tag\Exception\InvalidArgumentException;
+use LaminasTest\Tag\Cloud\TestAsset;
 
 /**
- * @category   Zend
- * @package    Zend_Tag
+ * @category   Laminas
+ * @package    Laminas_Tag
  * @subpackage UnitTests
- * @group      Zend_Tag
- * @group      Zend_Tag_Cloud
+ * @group      Laminas_Tag
+ * @group      Laminas_Tag_Cloud
  */
 class CloudTest extends \PHPUnit_Framework_TestCase
 {
@@ -47,7 +45,7 @@ class CloudTest extends \PHPUnit_Framework_TestCase
     public function testGetAndSetCloudDecorator()
     {
         $cloud = $this->_getCloud();
-        $this->assertTrue($cloud->getCloudDecorator() instanceof \Zend\Tag\Cloud\Decorator\HtmlCloud);
+        $this->assertTrue($cloud->getCloudDecorator() instanceof \Laminas\Tag\Cloud\Decorator\HtmlCloud);
 
         $cloud->setCloudDecorator(new TestAsset\CloudDummy());
         $this->assertTrue($cloud->getCloudDecorator() instanceof TestAsset\CloudDummy);
@@ -57,7 +55,7 @@ class CloudTest extends \PHPUnit_Framework_TestCase
     {
         $cloud = $this->_getCloud();
 
-        $this->setExpectedException('Zend\Tag\Exception\InvalidArgumentException', 'DecoratorInterface');
+        $this->setExpectedException('Laminas\Tag\Exception\InvalidArgumentException', 'DecoratorInterface');
         $cloud->setCloudDecorator(new \stdClass());
     }
 
@@ -73,7 +71,7 @@ class CloudTest extends \PHPUnit_Framework_TestCase
     public function testGetAndSetTagDecorator()
     {
         $cloud = $this->_getCloud();
-        $this->assertTrue($cloud->getTagDecorator() instanceof \Zend\Tag\Cloud\Decorator\HtmlTag);
+        $this->assertTrue($cloud->getTagDecorator() instanceof \Laminas\Tag\Cloud\Decorator\HtmlTag);
 
         $cloud->setTagDecorator(new TestAsset\TagDummy());
         $this->assertTrue($cloud->getTagDecorator() instanceof TestAsset\TagDummy);
@@ -83,7 +81,7 @@ class CloudTest extends \PHPUnit_Framework_TestCase
     {
         $cloud = $this->_getCloud();
 
-        $this->setExpectedException('Zend\Tag\Exception\InvalidArgumentException', 'DecoratorInterface');
+        $this->setExpectedException('Laminas\Tag\Exception\InvalidArgumentException', 'DecoratorInterface');
         $cloud->setTagDecorator(new \stdClass());
     }
 
@@ -126,7 +124,7 @@ class CloudTest extends \PHPUnit_Framework_TestCase
     {
         $cloud = $this->_getCloud();
 
-        $this->setExpectedException('Zend\Tag\Exception\InvalidArgumentException', 'TaggableInterface');
+        $this->setExpectedException('Laminas\Tag\Exception\InvalidArgumentException', 'TaggableInterface');
         $cloud->appendTag('foo');
     }
 
@@ -170,7 +168,7 @@ class CloudTest extends \PHPUnit_Framework_TestCase
     {
         $cloud = $this->_getCloud();
 
-        $this->setExpectedException('Zend\Tag\Exception\InvalidArgumentException', 'TaggableInterface');
+        $this->setExpectedException('Laminas\Tag\Exception\InvalidArgumentException', 'TaggableInterface');
         $cloud->setTags(array('foo'));
     }
 
@@ -184,7 +182,7 @@ class CloudTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructorWithConfig()
     {
-        $cloud = $this->_getCloud(new \Zend\Config\Config(array('tags' => array(array('title' => 'foo', 'weight' => 1)))));
+        $cloud = $this->_getCloud(new \Laminas\Config\Config(array('tags' => array(array('title' => 'foo', 'weight' => 1)))));
         $list  = $cloud->getItemList();
 
         $this->assertEquals('foo', $list[0]->getTitle());
@@ -208,7 +206,7 @@ class CloudTest extends \PHPUnit_Framework_TestCase
     public function testRender()
     {
         $cloud    = $this->_getCloud(array('tags' => array(array('title' => 'foo', 'weight' => 1), array('title' => 'bar', 'weight' => 3))));
-        $expected = '<ul class="Zend\Tag\Cloud">'
+        $expected = '<ul class="Laminas\Tag\Cloud">'
                   . '<li><a href="" style="font-size: 10px;">foo</a></li> '
                   . '<li><a href="" style="font-size: 20px;">bar</a></li>'
                   . '</ul>';
@@ -224,7 +222,7 @@ class CloudTest extends \PHPUnit_Framework_TestCase
     public function testRenderViaToString()
     {
         $cloud = $this->_getCloud(array('tags' => array(array('title' => 'foo', 'weight' => 1), array('title' => 'bar', 'weight' => 3))));
-        $expected = '<ul class="Zend\Tag\Cloud">'
+        $expected = '<ul class="Laminas\Tag\Cloud">'
                   . '<li><a href="" style="font-size: 10px;">foo</a></li> '
                   . '<li><a href="" style="font-size: 20px;">bar</a></li>'
                   . '</ul>';
@@ -237,10 +235,10 @@ class CloudTest extends \PHPUnit_Framework_TestCase
 
         if ($setDecoratorPluginManager) {
             $decorators = $cloud->getDecoratorPluginManager();
-            $decorators->setInvokableClass('clouddummy',  'ZendTest\Tag\Cloud\TestAsset\CloudDummy');
-            $decorators->setInvokableClass('clouddummy1', 'ZendTest\Tag\Cloud\TestAsset\CloudDummy1');
-            $decorators->setInvokableClass('clouddummy2', 'ZendTest\Tag\Cloud\TestAsset\CloudDummy2');
-            $decorators->setInvokableClass('tagdummy',    'ZendTest\Tag\Cloud\TestAsset\TagDummy');
+            $decorators->setInvokableClass('clouddummy',  'LaminasTest\Tag\Cloud\TestAsset\CloudDummy');
+            $decorators->setInvokableClass('clouddummy1', 'LaminasTest\Tag\Cloud\TestAsset\CloudDummy1');
+            $decorators->setInvokableClass('clouddummy2', 'LaminasTest\Tag\Cloud\TestAsset\CloudDummy2');
+            $decorators->setInvokableClass('tagdummy',    'LaminasTest\Tag\Cloud\TestAsset\TagDummy');
         }
 
         return $cloud;
