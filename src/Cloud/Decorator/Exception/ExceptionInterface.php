@@ -1,22 +1,20 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Tag
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Tag\Cloud\Decorator\Exception;
+namespace Laminas\Tag\Cloud\Decorator\Exception;
 
-use Zend\Tag\Exception\ExceptionInterface as Exception;
+use Laminas\Tag\Exception\ExceptionInterface as Exception;
 
 /**
- * Exception class for Zend_Tag_Cloud_Decorator
+ * Exception class for Laminas_Tag_Cloud_Decorator
  *
- * @category  Zend
- * @package   Zend_Tag
+ * @category  Laminas
+ * @package   Laminas_Tag
  */
 interface ExceptionInterface extends Exception
 {}
