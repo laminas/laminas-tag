@@ -1,13 +1,14 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-tag for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-tag/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Tag\Cloud\Decorator\Exception;
+namespace Laminas\Tag\Cloud\Decorator\Exception;
 
-use Zend\Tag\Exception;
+use Laminas\Tag\Exception;
 
 class InvalidArgumentException extends Exception\InvalidArgumentException implements ExceptionInterface
 {

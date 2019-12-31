@@ -1,17 +1,18 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-tag for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-tag/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\ServiceManager;
+namespace LaminasTest\ServiceManager;
 
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\Test\CommonPluginManagerTrait;
+use Laminas\Tag\Cloud\Decorator\DecoratorInterface;
+use Laminas\Tag\Cloud\DecoratorPluginManager;
 use PHPUnit\Framework\TestCase;
-use Zend\ServiceManager\ServiceManager;
-use Zend\ServiceManager\Test\CommonPluginManagerTrait;
-use Zend\Tag\Cloud\Decorator\DecoratorInterface;
-use Zend\Tag\Cloud\DecoratorPluginManager;
 
 /**
  * Example test of using CommonPluginManagerTrait
