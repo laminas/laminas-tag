@@ -1,30 +1,22 @@
 {
-    "name": "zendframework/zend-tag",
+    "name": "laminas/laminas-tag",
     "description": "a component suite which provides a facility to work with taggable Items",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
+        "laminas",
         "tag"
     ],
-    "homepage": "https://github.com/zendframework/zend-tag",
-    "autoload": {
-        "psr-4": {
-            "Zend\\Tag\\": "src/"
-        }
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-tag/",
+        "issues": "https://github.com/laminas/laminas-tag/issues",
+        "source": "https://github.com/laminas/laminas-tag",
+        "rss": "https://github.com/laminas/laminas-tag/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "require": {
-        "php": ">=5.3.23",
-        "zendframework/zend-escaper": "self.version",
-        "zendframework/zend-stdlib": "self.version"
-    },
-    "require-dev": {
-        "zendframework/zend-servicemanager": "self.version",
-        "fabpot/php-cs-fixer": "1.7.*",
-        "satooshi/php-coveralls": "dev-master",
-        "phpunit/PHPUnit": "~4.0"
-    },
-    "suggest": {
-        "zendframework/zend-servicemanager": "Zend\\ServiceManager component"
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
@@ -32,9 +24,32 @@
             "dev-develop": "2.5-dev"
         }
     },
+    "require": {
+        "php": ">=5.3.23",
+        "laminas/laminas-escaper": "self.version",
+        "laminas/laminas-stdlib": "self.version",
+        "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "1.7.*",
+        "laminas/laminas-servicemanager": "self.version",
+        "phpunit/phpunit": "~4.0",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "suggest": {
+        "laminas/laminas-servicemanager": "Laminas\\ServiceManager component"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Tag\\": "src/"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
-            "ZendTest\\Tag\\": "test/"
+            "LaminasTest\\Tag\\": "test/"
         }
+    },
+    "replace": {
+        "zendframework/zend-tag": "self.version"
     }
 }
