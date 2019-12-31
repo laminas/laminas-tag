@@ -1,13 +1,14 @@
 <?php
+
 /**
  * @author    Antoine Hedgecock <antoine.hedgecock@gmail.com>
  *
  * @copyright Interactive Solutions AB
  */
 
-namespace ZendTest\Tag\Cloud;
+namespace LaminasTest\Tag\Cloud;
 
-use Zend\Tag\ItemList;
+use Laminas\Tag\ItemList;
 
 class ItemListDummy extends ItemList
 {

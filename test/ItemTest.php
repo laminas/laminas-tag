@@ -1,19 +1,18 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Tag;
+namespace LaminasTest\Tag;
 
 use ArrayObject;
-use Zend\Tag;
+use Laminas\Tag;
 
 /**
- * @group      Zend_Tag
+ * @group      Laminas_Tag
  */
 class ItemTest extends \PHPUnit_Framework_TestCase
 {
@@ -66,7 +65,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidTitle()
     {
-        $this->setExpectedException('\Zend\Tag\Exception\InvalidArgumentException', 'Title must be a string');
+        $this->setExpectedException('\Laminas\Tag\Exception\InvalidArgumentException', 'Title must be a string');
         $tag = new Tag\Item(['title' => 10, 'weight' => 1]);
     }
 
@@ -81,7 +80,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidWeight()
     {
-        $this->setExpectedException('\Zend\Tag\Exception\InvalidArgumentException', 'Weight must be numeric');
+        $this->setExpectedException('\Laminas\Tag\Exception\InvalidArgumentException', 'Weight must be numeric');
         $tag = new Tag\Item(['title' => 'foo', 'weight' => 'foobar']);
     }
 
@@ -93,25 +92,25 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidOptions()
     {
-        $this->setExpectedException('\Zend\Tag\Exception\InvalidArgumentException', 'Invalid options provided to constructor');
+        $this->setExpectedException('\Laminas\Tag\Exception\InvalidArgumentException', 'Invalid options provided to constructor');
         $tag = new Tag\Item('test');
     }
 
     public function testMissingTitle()
     {
-        $this->setExpectedException('\Zend\Tag\Exception\InvalidArgumentException', 'Title was not set');
+        $this->setExpectedException('\Laminas\Tag\Exception\InvalidArgumentException', 'Title was not set');
         $tag = new Tag\Item(['weight' => 1]);
     }
 
     public function testMissingWeight()
     {
-        $this->setExpectedException('\Zend\Tag\Exception\InvalidArgumentException', 'Weight was not set');
+        $this->setExpectedException('\Laminas\Tag\Exception\InvalidArgumentException', 'Weight was not set');
         $tag = new Tag\Item(['title' => 'foo']);
     }
 
     /**
      * This test uses ArrayObject, which will have essentially the
-     * same behavior as Zend\Config\Config; the code is looking only
+     * same behavior as Laminas\Config\Config; the code is looking only
      * for a Traversable.
      */
     public function testConfigOptions()

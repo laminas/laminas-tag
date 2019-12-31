@@ -1,20 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Tag\Cloud\Decorator;
+namespace LaminasTest\Tag\Cloud\Decorator;
 
 use ArrayObject;
-use Zend\Tag\Cloud\Decorator;
+use Laminas\Tag\Cloud\Decorator;
 
 /**
- * @group      Zend_Tag
- * @group      Zend_Tag_Cloud
+ * @group      Laminas_Tag
+ * @group      Laminas_Tag_Cloud
  */
 class HtmlCloudTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,7 +22,7 @@ class HtmlCloudTest extends \PHPUnit_Framework_TestCase
         $decorator = new Decorator\HtmlCloud();
 
         $this->assertEquals(
-            '<ul class="zend-tag-cloud">foo bar</ul>',
+            '<ul class="laminas-tag-cloud">foo bar</ul>',
             $decorator->render(
                 [
                      'foo',
@@ -60,7 +59,7 @@ class HtmlCloudTest extends \PHPUnit_Framework_TestCase
         $decorator->setSeparator('-');
 
         $this->assertEquals(
-            '<ul class="zend-tag-cloud">foo-bar</ul>',
+            '<ul class="laminas-tag-cloud">foo-bar</ul>',
             $decorator->render(
                 [
                      'foo',
@@ -88,7 +87,7 @@ class HtmlCloudTest extends \PHPUnit_Framework_TestCase
 
     /**
      * This test uses ArrayObject, which will have essentially the
-     * same behavior as Zend\Config\Config; the code is looking only
+     * same behavior as Laminas\Config\Config; the code is looking only
      * for a Traversable.
      */
     public function testConstructorWithConfig()
@@ -153,7 +152,7 @@ class HtmlCloudTest extends \PHPUnit_Framework_TestCase
         $decorator = new Decorator\HtmlCloud();
         $decorator->setHTMLTags($tags);
         $this->setExpectedException(
-            'Zend\Tag\Exception\InvalidElementNameException'
+            'Laminas\Tag\Exception\InvalidElementNameException'
         );
         $decorator->render([]);
     }
@@ -193,7 +192,7 @@ class HtmlCloudTest extends \PHPUnit_Framework_TestCase
         $decorator = new Decorator\HtmlCloud();
         $decorator->setHTMLTags($tags);
         $this->setExpectedException(
-            'Zend\Tag\Exception\InvalidAttributeNameException'
+            'Laminas\Tag\Exception\InvalidAttributeNameException'
         );
         $decorator->render([]);
     }
