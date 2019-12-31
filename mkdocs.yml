@@ -2,8 +2,11 @@ docs_dir: docs/book
 site_dir: docs/html
 nav:
     - index.md
-    - "Quick Start": quick-start.md
-    - "Tag Clouds": tag-cloud.md
+    - { 'Quick Start': quick-start.md }
+    - { 'Tag Clouds': tag-cloud.md }
 site_name: laminas-tag
 site_description: Laminas\Tag
 repo_url: 'https://github.com/laminas/laminas-tag'
+extra:
+    project: Components
+    project_url: 'https://docs.laminas.dev'
