@@ -1,20 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-tag for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Tag\Cloud\Decorator;
+namespace LaminasTest\Tag\Cloud\Decorator;
 
-use Zend\Tag;
-use Zend\Tag\Cloud\Decorator;
+use Laminas\Tag;
+use Laminas\Tag\Cloud\Decorator;
 
 /**
- * @group      Zend_Tag
- * @group      Zend_Tag_Cloud
+ * @group      Laminas_Tag
+ * @group      Laminas_Tag_Cloud
  */
 class HtmlTagTest extends \PHPUnit_Framework_TestCase
 {
@@ -69,7 +68,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Classlist is empty');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Classlist is empty');
         $decorator->setClassList(array());
     }
 
@@ -77,7 +76,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Classlist contains an invalid classname');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Classlist contains an invalid classname');
         $decorator->setClassList(array(array()));
     }
 
@@ -85,7 +84,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Invalid fontsize unit specified');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Invalid fontsize unit specified');
         $decorator->setFontSizeUnit('foo');
     }
 
@@ -93,7 +92,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Fontsize must be numeric');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Fontsize must be numeric');
         $decorator->setMinFontSize('foo');
     }
 
@@ -101,7 +100,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->setExpectedException('Zend\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Fontsize must be numeric');
+        $this->setExpectedException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException', 'Fontsize must be numeric');
         $decorator->setMaxFontSize('foo');
     }
 
@@ -116,7 +115,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructorWithConfig()
     {
-        $decorator = new Decorator\HtmlTag(new \Zend\Config\Config(array('minFontSize' => 5, 'maxFontSize' => 10, 'fontSizeUnit' => 'pt')));
+        $decorator = new Decorator\HtmlTag(new \Laminas\Config\Config(array('minFontSize' => 5, 'maxFontSize' => 10, 'fontSizeUnit' => 'pt')));
 
         $this->assertEquals(5, $decorator->getMinFontSize());
         $this->assertEquals(10, $decorator->getMaxFontSize());
@@ -182,7 +181,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHTMLTags($tags);
-        $this->setExpectedException('Zend\Tag\Exception\InvalidElementNameException');
+        $this->setExpectedException('Laminas\Tag\Exception\InvalidElementNameException');
         $decorator->render($this->getTags());
     }
 
@@ -214,7 +213,7 @@ class HtmlTagTest extends \PHPUnit_Framework_TestCase
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHTMLTags($tags);
-        $this->setExpectedException('Zend\Tag\Exception\InvalidAttributeNameException');
+        $this->setExpectedException('Laminas\Tag\Exception\InvalidAttributeNameException');
         $decorator->render($this->getTags());
     }
 }
