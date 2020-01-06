@@ -1,6 +1,6 @@
 # laminas-tag
 
-[![Build Status](https://travis-ci.org/laminas/laminas-tag.svg?branch=master)](https://travis-ci.org/laminas/laminas-tag)
+[![Build Status](https://travis-ci.com/laminas/laminas-tag.svg?branch=master)](https://travis-ci.com/laminas/laminas-tag)
 [![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-tag/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-tag?branch=master)
 
 `Laminas\Tag` is a component suite which provides a facility to work with taggable
