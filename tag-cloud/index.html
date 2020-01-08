@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -61,20 +65,6 @@
         <h5 class="subnavigation__subtitle">Table of Contents</h5>
 
         <ul class="subnavigation__list">
-            
-
-                
-                
-
-                    
-                    
-                        
-                            <li class="subnavigation__list-item ">
-                                <a href=".." class="subnavigation__link">laminas-tag</a>
-                            </li>
-                        
-                    
-                
             
 
                 
@@ -251,50 +241,48 @@ via a configuration sturcture (either an array or an instance of <code>Traversab
 <h2 id="using-laminas92tag92cloud">Using Laminas\Tag\Cloud</h2>
 <p>This example illustrates a basic example of how to create a tag cloud, add
 multiple tags to it, and finally render it.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>// Create the cloud and assign static tags to it</span>
-<span class=x>$cloud = new Laminas\Tag\Cloud([</span>
-<span class=x>    &#39;tags&#39; =&gt; [</span>
-<span class=x>        [</span>
-<span class=x>            &#39;title&#39;  =&gt; &#39;Code&#39;,</span>
-<span class=x>            &#39;weight&#39; =&gt; 50,</span>
-<span class=x>            &#39;params&#39; =&gt; [&#39;url&#39; =&gt; &#39;/tag/code&#39;],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;title&#39;  =&gt; &#39;Laminas&#39;,</span>
-<span class=x>            &#39;weight&#39; =&gt; 1,</span>
-<span class=x>            &#39;params&#39; =&gt; [&#39;url&#39; =&gt; &#39;/tag/laminas-framework&#39;],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;title&#39; =&gt; &#39;PHP&#39;,</span>
-<span class=x>            &#39;weight&#39; =&gt; 5,</span>
-<span class=x>            &#39;params&#39; =&gt; [&#39;url&#39; =&gt; &#39;/tag/php&#39;],</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
+<pre class=codehilite><code class=language-php>// Create the cloud and assign static tags to it
+$cloud = new Laminas\Tag\Cloud([
+    'tags' =&gt; [
+        [
+            'title'  =&gt; 'Code',
+            'weight' =&gt; 50,
+            'params' =&gt; ['url' =&gt; '/tag/code'],
+        ],
+        [
+            'title'  =&gt; 'Laminas',
+            'weight' =&gt; 1,
+            'params' =&gt; ['url' =&gt; '/tag/laminas-framework'],
+        ],
+        [
+            'title' =&gt; 'PHP',
+            'weight' =&gt; 5,
+            'params' =&gt; ['url' =&gt; '/tag/php'],
+        ],
+    ],
+]);
 
-<span class=x>// Render the cloud</span>
-<span class=x>echo $cloud;</span>
-</pre></div></p>
+// Render the cloud
+echo $cloud;</code></pre>
 <p>This will output the tag cloud with the three tags, spread with the default
 font-sizes:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>&lt;ul class=&quot;laminas-tag-cloud&quot;&gt;</span>
-<span class=x>    &lt;li&gt;</span>
-<span class=x>        &lt;a href=&quot;/tag/code&quot; style=&quot;font-size: 20px;&quot;&gt;</span>
-<span class=x>            Code</span>
-<span class=x>        &lt;/a&gt;</span>
-<span class=x>    &lt;/li&gt;</span>
-<span class=x>    &lt;li&gt;</span>
-<span class=x>        &lt;a href=&quot;/tag/laminas-framework&quot; style=&quot;font-size: 10px;&quot;&gt;</span>
-<span class=x>            Laminas</span>
-<span class=x>        &lt;/a&gt;</span>
-<span class=x>    &lt;/li&gt;</span>
-<span class=x>    &lt;li&gt;</span>
-<span class=x>        &lt;a href=&quot;/tag/php&quot; style=&quot;font-size: 11px;&quot;&gt;</span>
-<span class=x>            PHP</span>
-<span class=x>        &lt;/a&gt;</span>
-<span class=x>    &lt;/li&gt;</span>
-<span class=x>&lt;/ul&gt;</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>&lt;ul class=&quot;laminas-tag-cloud&quot;&gt;
+    &lt;li&gt;
+        &lt;a href=&quot;/tag/code&quot; style=&quot;font-size: 20px;&quot;&gt;
+            Code
+        &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;a href=&quot;/tag/laminas-framework&quot; style=&quot;font-size: 10px;&quot;&gt;
+            Laminas
+        &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;a href=&quot;/tag/php&quot; style=&quot;font-size: 11px;&quot;&gt;
+            PHP
+        &lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 <blockquote>
 <h3>Formatting</h3>
 <p>The HTML code examples are preformatted for a better visualization in the
@@ -302,23 +290,21 @@ documentation.  You can define a output separator for the <a href="#html-cloud-d
 decorator</a>.</p>
 </blockquote>
 <p>The following example shows how create the <strong>same</strong> tag cloud from a <code>Laminas\Config\Config</code> object.</p>
-<div class=md-fenced-code-tabs id=tab-tab-group-2><ul class="nav nav-tabs"><li class=nav-item><a class="nav-link active" href=#tab-group-2-0_ini-panel role=tab id=tab-group-2-0_ini-tab data-toggle=tab data-lang=ini aria-controls=tab-group-2-0_ini-panel aria-selected=true>Ini</a></li><li class=nav-item><a class="nav-link " href=#tab-group-2-1_php-panel role=tab id=tab-group-2-1_php-tab data-toggle=tab data-lang=php aria-controls=tab-group-2-1_php-panel aria-selected=false>Php</a></li></ul><div class=tab-content><div id=tab-group-2-0_ini-panel class="tab-pane show active" role=tabpanel aria-labelledby=tab-group-2-0_ini-tab><div class=codehilite><pre><span></span><span class=c1>; An example tags.ini file</span>
-<span class=na>tags.1.title</span> <span class=o>=</span> <span class=s>&quot;Code&quot;</span>
-<span class=na>tags.1.weight</span> <span class=o>=</span> <span class=s>50</span>
-<span class=na>tags.1.params.url</span> <span class=o>=</span> <span class=s>&quot;/tag/code&quot;</span>
-<span class=na>tags.2.title</span> <span class=o>=</span> <span class=s>&quot;Laminas&quot;</span>
-<span class=na>tags.2.weight</span> <span class=o>=</span> <span class=s>1</span>
-<span class=na>tags.2.params.url</span> <span class=o>=</span> <span class=s>&quot;/tag/laminas-framework&quot;</span>
-<span class=na>tags.3.title</span> <span class=o>=</span> <span class=s>&quot;PHP&quot;</span>
-<span class=na>tags.3.weight</span> <span class=o>=</span> <span class=s>2</span>
-<span class=na>tags.3.params.url</span> <span class=o>=</span> <span class=s>&quot;/tag/php&quot;</span>
-</pre></div></div><div id=tab-group-2-1_php-panel class="tab-pane " role=tabpanel aria-labelledby=tab-group-2-1_php-tab><div class=codehilite><pre><span></span><span class=x>// Create the cloud from a Laminas\Config\Config object</span>
-<span class=x>$config = Laminas\Config\Factory::fromFile(&#39;tags.ini&#39;);</span>
-<span class=x>$cloud = new Laminas\Tag\Cloud($config);</span>
+<div class=md-fenced-code-tabs id=tab-tab-group-2><ul class="nav nav-tabs"><li class=nav-item><a class="nav-link active" href=#tab-group-2-0_ini-panel role=tab id=tab-group-2-0_ini-tab data-toggle=tab data-lang=ini aria-controls=tab-group-2-0_ini-panel aria-selected=true>Ini</a></li><li class=nav-item><a class="nav-link " href=#tab-group-2-1_php-panel role=tab id=tab-group-2-1_php-tab data-toggle=tab data-lang=php aria-controls=tab-group-2-1_php-panel aria-selected=false>Php</a></li></ul><div class=tab-content><div id=tab-group-2-0_ini-panel class="tab-pane show active" role=tabpanel aria-labelledby=tab-group-2-0_ini-tab><pre class=codehilite><code class=language-ini>; An example tags.ini file
+tags.1.title = &quot;Code&quot;
+tags.1.weight = 50
+tags.1.params.url = &quot;/tag/code&quot;
+tags.2.title = &quot;Laminas&quot;
+tags.2.weight = 1
+tags.2.params.url = &quot;/tag/laminas-framework&quot;
+tags.3.title = &quot;PHP&quot;
+tags.3.weight = 2
+tags.3.params.url = &quot;/tag/php&quot;</code></pre></div><div id=tab-group-2-1_php-panel class="tab-pane " role=tabpanel aria-labelledby=tab-group-2-1_php-tab><pre class=codehilite><code class=language-php>// Create the cloud from a Laminas\Config\Config object
+$config = Laminas\Config\Factory::fromFile('tags.ini');
+$cloud = new Laminas\Tag\Cloud($config);
 
-<span class=x>// Render the cloud</span>
-<span class=x>echo $cloud;</span>
-</pre></div></div></div></div>
+// Render the cloud
+echo $cloud;</code></pre></div></div></div>
 
 <h2 id="decorators">Decorators</h2>
 <p><code>Laminas\Tag\Cloud</code> requires two types of decorators to be able to render a tag cloud:</p>
@@ -380,52 +366,50 @@ the corresponding one will automatically be enabled.</p>
 </tbody>
 </table></div>
 <p>The following example shows how to create a tag cloud with a customized HTML tag decorator.</p>
-<p> <div class=codehilite><pre><span></span><span class=x>$cloud = new Laminas\Tag\Cloud([</span>
-<span class=x>    &#39;tagDecorator&#39; =&gt; [</span>
-<span class=x>        &#39;decorator&#39; =&gt; &#39;htmltag&#39;,</span>
-<span class=x>        &#39;options&#39;   =&gt; [</span>
-<span class=x>            &#39;minFontSize&#39; =&gt; &#39;20&#39;,</span>
-<span class=x>            &#39;maxFontSize&#39; =&gt; &#39;50&#39;,</span>
-<span class=x>            &#39;htmlTags&#39;    =&gt; [</span>
-<span class=x>                &#39;li&#39; =&gt; [&#39;class&#39; =&gt; &#39;my_custom_class&#39;],</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>    &#39;tags&#39; =&gt; [</span>
-<span class=x>       [</span>
-<span class=x>           &#39;title&#39;  =&gt; &#39;Code&#39;,</span>
-<span class=x>           &#39;weight&#39; =&gt; 50,</span>
-<span class=x>           &#39;params&#39; =&gt; [&#39;url&#39; =&gt; &#39;/tag/code&#39;],</span>
-<span class=x>       ],</span>
-<span class=x>       [</span>
-<span class=x>           &#39;title&#39;  =&gt; &#39;Laminas&#39;,</span>
-<span class=x>           &#39;weight&#39; =&gt; 1,</span>
-<span class=x>           &#39;params&#39; =&gt; [&#39;url&#39; =&gt; &#39;/tag/laminas-framework&#39;],</span>
-<span class=x>       ],</span>
-<span class=x>       [</span>
-<span class=x>           &#39;title&#39;  =&gt; &#39;PHP&#39;,</span>
-<span class=x>           &#39;weight&#39; =&gt; 5,</span>
-<span class=x>           &#39;params&#39; =&gt; [&#39;url&#39; =&gt; &#39;/tag/php&#39;]</span>
-<span class=x>       ],</span>
-<span class=x>   ],</span>
-<span class=x>]);</span>
+<pre class=codehilite><code class=language-php>$cloud = new Laminas\Tag\Cloud([
+    'tagDecorator' =&gt; [
+        'decorator' =&gt; 'htmltag',
+        'options'   =&gt; [
+            'minFontSize' =&gt; '20',
+            'maxFontSize' =&gt; '50',
+            'htmlTags'    =&gt; [
+                'li' =&gt; ['class' =&gt; 'my_custom_class'],
+            ],
+        ],
+    ],
+    'tags' =&gt; [
+       [
+           'title'  =&gt; 'Code',
+           'weight' =&gt; 50,
+           'params' =&gt; ['url' =&gt; '/tag/code'],
+       ],
+       [
+           'title'  =&gt; 'Laminas',
+           'weight' =&gt; 1,
+           'params' =&gt; ['url' =&gt; '/tag/laminas-framework'],
+       ],
+       [
+           'title'  =&gt; 'PHP',
+           'weight' =&gt; 5,
+           'params' =&gt; ['url' =&gt; '/tag/php']
+       ],
+   ],
+]);
 
-<span class=x>// Render the cloud</span>
-<span class=x>echo $cloud;</span>
-</pre></div></p>
+// Render the cloud
+echo $cloud;</code></pre>
 <p>The output:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>&lt;ul class=&quot;laminas-tag-cloud&quot;&gt;</span>
-<span class=x>    &lt;li class=&quot;my_custom_class&quot;&gt;</span>
-<span class=x>        &lt;a href=&quot;/tag/code&quot; style=&quot;font-size: 50px;&quot;&gt;Code&lt;/a&gt;</span>
-<span class=x>    &lt;/li&gt;</span>
-<span class=x>    &lt;li class=&quot;my_custom_class&quot;&gt;</span>
-<span class=x>        &lt;a href=&quot;/tag/laminas-framework&quot; style=&quot;font-size: 20px;&quot;&gt;Laminas&lt;/a&gt;</span>
-<span class=x>    &lt;/li&gt;</span>
-<span class=x>    &lt;li class=&quot;my_custom_class&quot;&gt;</span>
-<span class=x>        &lt;a href=&quot;/tag/php&quot; style=&quot;font-size: 23px;&quot;&gt;PHP&lt;/a&gt;</span>
-<span class=x>    &lt;/li&gt;</span>
-<span class=x>&lt;/ul&gt;</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>&lt;ul class=&quot;laminas-tag-cloud&quot;&gt;
+    &lt;li class=&quot;my_custom_class&quot;&gt;
+        &lt;a href=&quot;/tag/code&quot; style=&quot;font-size: 50px;&quot;&gt;Code&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;my_custom_class&quot;&gt;
+        &lt;a href=&quot;/tag/laminas-framework&quot; style=&quot;font-size: 20px;&quot;&gt;Laminas&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;my_custom_class&quot;&gt;
+        &lt;a href=&quot;/tag/php&quot; style=&quot;font-size: 23px;&quot;&gt;PHP&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
 <h3>HTML Cloud decorator</h3>
 <p>By default, the HTML cloud decorator will surround the HTML tags with a <code>&lt;ul&gt;</code>
 element and add no separation. Like the tag decorator, you can define multiple
@@ -452,50 +436,48 @@ are:</p>
 </tr>
 </tbody>
 </table></div>
-<p> <div class=codehilite><pre><span></span><span class=x>// Create the cloud and assign static tags to it</span>
-<span class=x>$cloud = new Laminas\Tag\Cloud([</span>
-<span class=x>    &#39;cloudDecorator&#39; =&gt; [</span>
-<span class=x>        &#39;decorator&#39; =&gt; &#39;htmlcloud&#39;,</span>
-<span class=x>        &#39;options&#39;   =&gt; [</span>
-<span class=x>            &#39;separator&#39; =&gt; &quot;\n\n&quot;,</span>
-<span class=x>            &#39;htmlTags&#39;  =&gt; [</span>
-<span class=x>                &#39;ul&#39; =&gt; [</span>
-<span class=x>                    &#39;class&#39; =&gt; &#39;my_custom_class&#39;,</span>
-<span class=x>                    &#39;id&#39;    =&gt; &#39;tag-cloud&#39;,</span>
-<span class=x>                ],</span>
-<span class=x>            ],</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>    &#39;tags&#39; =&gt; [</span>
-<span class=x>        array(</span>
-<span class=x>            &#39;title&#39;  =&gt; &#39;Code&#39;,</span>
-<span class=x>            &#39;weight&#39; =&gt; 50,</span>
-<span class=x>            &#39;params&#39; =&gt; [&#39;url&#39; =&gt; &#39;/tag/code&#39;],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;title&#39;  =&gt; &#39;Laminas&#39;,</span>
-<span class=x>            &#39;weight&#39; =&gt; 1,</span>
-<span class=x>            &#39;params&#39; =&gt; [&#39;url&#39; =&gt; &#39;/tag/laminas-framework&#39;],</span>
-<span class=x>        ],</span>
-<span class=x>        [</span>
-<span class=x>            &#39;title&#39; =&gt; &#39;PHP&#39;,</span>
-<span class=x>            &#39;weight&#39; =&gt; 5,</span>
-<span class=x>            &#39;params&#39; =&gt; [&#39;url&#39; =&gt; &#39;/tag/php&#39;],</span>
-<span class=x>        ],</span>
-<span class=x>    ],</span>
-<span class=x>]);</span>
+<pre class=codehilite><code class=language-php>// Create the cloud and assign static tags to it
+$cloud = new Laminas\Tag\Cloud([
+    'cloudDecorator' =&gt; [
+        'decorator' =&gt; 'htmlcloud',
+        'options'   =&gt; [
+            'separator' =&gt; &quot;\n\n&quot;,
+            'htmlTags'  =&gt; [
+                'ul' =&gt; [
+                    'class' =&gt; 'my_custom_class',
+                    'id'    =&gt; 'tag-cloud',
+                ],
+            ],
+        ],
+    ],
+    'tags' =&gt; [
+        array(
+            'title'  =&gt; 'Code',
+            'weight' =&gt; 50,
+            'params' =&gt; ['url' =&gt; '/tag/code'],
+        ],
+        [
+            'title'  =&gt; 'Laminas',
+            'weight' =&gt; 1,
+            'params' =&gt; ['url' =&gt; '/tag/laminas-framework'],
+        ],
+        [
+            'title' =&gt; 'PHP',
+            'weight' =&gt; 5,
+            'params' =&gt; ['url' =&gt; '/tag/php'],
+        ],
+    ],
+]);
 
-<span class=x>// Render the cloud</span>
-<span class=x>echo $cloud;</span>
-</pre></div></p>
+// Render the cloud
+echo $cloud;</code></pre>
 <p>The output:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>&lt;ul class=&quot;my_custom_class&quot; id=&quot;tag-cloud&quot;&gt;&lt;li&gt;&lt;a href=&quot;/tag/code&quot; style=&quot;font-size:</span>
-<span class=x>20px;&quot;&gt;Code&lt;/a&gt;&lt;/li&gt;</span>
+<pre class=codehilite><code class=language-php>&lt;ul class=&quot;my_custom_class&quot; id=&quot;tag-cloud&quot;&gt;&lt;li&gt;&lt;a href=&quot;/tag/code&quot; style=&quot;font-size:
+20px;&quot;&gt;Code&lt;/a&gt;&lt;/li&gt;
 
-<span class=x>&lt;li&gt;&lt;a href=&quot;/tag/laminas-framework&quot; style=&quot;font-size: 10px;&quot;&gt;Laminas&lt;/a&gt;&lt;/li&gt;</span>
+&lt;li&gt;&lt;a href=&quot;/tag/laminas-framework&quot; style=&quot;font-size: 10px;&quot;&gt;Laminas&lt;/a&gt;&lt;/li&gt;
 
-<span class=x>&lt;li&gt;&lt;a href=&quot;/tag/php&quot; style=&quot;font-size: 11px;&quot;&gt;PHP&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</span>
-</pre></div></p>
+&lt;li&gt;&lt;a href=&quot;/tag/php&quot; style=&quot;font-size: 11px;&quot;&gt;PHP&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;</code></pre>
 
 
 
@@ -561,20 +543,6 @@ are:</p>
                     
                         
                             <li class="subnavigation__list-item ">
-                                <a href=".." class="subnavigation__link">laminas-tag</a>
-                            </li>
-                        
-                    
-                
-            
-
-                
-                
-
-                    
-                    
-                        
-                            <li class="subnavigation__list-item ">
                                 <a href="../quick-start/" class="subnavigation__link">Quick Start</a>
                             </li>
                         
@@ -618,9 +586,10 @@ are:</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -657,7 +626,7 @@ are:</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-tag//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-tag/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -666,8 +635,8 @@ are:</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-tag//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-tag/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>

@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Laminas\Tag">  
-    <link rel="canonical" href="https://docs.laminas.dev/quick-start/">
     <link rel="shortcut icon" href="/img/trademark-laminas-foundation-rgb.svg">
 
-    <title>Quick Start - laminas-tag - Laminas Docs</title>
+    <title>laminas-tag - Laminas Docs</title>
 
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -59,7 +58,7 @@
                     
     <div class="subnavigation hidden-print">
         <h4 class="subnavigation__title">
-            <a href="..">laminas-tag</a>
+            <a href="../.">laminas-tag</a>
         </h4>
 
         <h5 class="subnavigation__subtitle">Table of Contents</h5>
@@ -73,8 +72,8 @@
                     
                     
                         
-                            <li class="subnavigation__list-item subnavigation__list-item--active">
-                                <a href="./" class="subnavigation__link">Quick Start</a>
+                            <li class="subnavigation__list-item ">
+                                <a href="../quick-start/" class="subnavigation__link">Quick Start</a>
                             </li>
                         
                     
@@ -153,125 +152,21 @@
         <div class="row">
             <div class="col-md-2 col-sm-12">
                 
-    
-
-    
-    
-        <div class="toc">
-            <h6 class="toc__headline">On this page</h6>
-            <ul class="toc__list">
-                
-                    <li class="toc__entry">
-                        <a href="#quick-start" class="toc__link">Quick Start</a>
-                    </li>
-                
-            </ul>
-        </div>
-    
-
             </div>
             <div class="col-md-7 col-sm-12 content" role="main" data-spy="scroll" data-target=".toc">
                 
-                    <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        
-            <li class="breadcrumb-item"><a href="">Overview</a></li>
 
-            
-                <li class="breadcrumb-item"><a href="..">laminas-tag</a></li>
+<h1 class="content__title">404</h1>
+<blockquote>
+    <h3>Something went wrong!</h3>
+    <p>
+        We're sorry, but the page you are looking for does not exist.
+    </p>
+</blockquote>
 
-                
-
-                <li class="breadcrumb-item active" aria-current="page">Quick Start</li>
-            
-        
-    </ol>
-</nav>
+<a href="../." class="btn btn-default" role="button">Go to homepage</a>
 
 
-
-
-
-
-    
-    
-
-    <h1 id="introduction-and-quick-start">Introduction and Quick Start</h1>
-<p>laminas-tag provides the ability to work with taggable items. At its foundation, it
-provides two classes to work with tags, <code>Laminas\Tag\Item</code> and <code>Laminas\Tag\ItemList</code>.
-Additionally, it comes with the interface <code>Laminas\Tag\TaggableInterface</code>, which
-allows you to use any of your models as a taggable item in conjunction with the
-component.</p>
-<p><code>Laminas\Tag\Item</code> provides the essential functionality required to work with all
-other functionality within the component. A taggable item always consists of a
-title and a relative weight (e.g. number of occurrences). It also stores
-parameters which are used by the different sub-components.</p>
-<p><code>Laminas\Tag\ItemList</code> exists to group multiple items together as an array
-iterator, and provides additional functionality to calculate absolute weight
-values based on the given relative weights of each item in it.</p>
-<h2 id="quick-start">Quick Start</h2>
-<p>This example illustrates how to create a list of tags and spread absolute weight
-values over them.</p>
-<pre class=codehilite><code class=language-php>// Create the item list
-$list = new Laminas\Tag\ItemList();
-
-// Assign tags to it
-$list[] = new Laminas\Tag\Item(['title' =&gt; 'Code', 'weight' =&gt; 50]);
-$list[] = new Laminas\Tag\Item(['title' =&gt; 'Laminas', 'weight' =&gt; 1]);
-$list[] = new Laminas\Tag\Item(['title' =&gt; 'PHP', 'weight' =&gt; 5]);
-
-// Spread absolute values on the items
-$list-&gt;spreadWeightValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-// Output the items with their absolute values
-foreach ($list as $item) {
-    printf(&quot;%s: %d\n&quot;, $item-&gt;getTitle(), $item-&gt;getParam('weightValue'));
-}</code></pre>
-<p>This will output the three items "Code", "Laminas", and "PHP", with the
-absolute values 10, 1 and 2:</p>
-<pre class=codehilite><code>Code: 10
-Laminas: 1
-PHP: 2</code></pre>
-
-
-
-
-    <nav>
-    <ul class="page-nav hidden-print">
-
-        
-        <li class="page-nav__item">
-            
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="..">
-                    <i class="fa fa-chevron-left"></i> Previous
-                </a>
-            
-        </li>
-
-        
-        <li class="page-nav__item">
-            
-                <a rel="next" class="page-nav__link page-nav__link--next" href="../tag-cloud/">
-                    Next <i class="fa fa-chevron-right"></i>
-                </a>
-            
-        </li>
-    </ul>
-</nav>
-
-
-
-
-    <div class="help-wanted">
-        <p>
-            Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/laminas/laminas-tag/edit/master/docs/book/quick-start.md" target="_blank" class="help-wanted__link">
-                Edit this page on GitHub!
-            </a>
-        </p>
-    </div>
-
-                
             </div>
             <div class="col-md-3 col-sm-12 sidebar">
                 
@@ -286,7 +181,7 @@ PHP: 2</code></pre>
                     
     <div class="subnavigation hidden-print">
         <h4 class="subnavigation__title">
-            <a href="..">laminas-tag</a>
+            <a href="../.">laminas-tag</a>
         </h4>
 
         <h5 class="subnavigation__subtitle">Table of Contents</h5>
@@ -300,8 +195,8 @@ PHP: 2</code></pre>
                     
                     
                         
-                            <li class="subnavigation__list-item subnavigation__list-item--active">
-                                <a href="./" class="subnavigation__link">Quick Start</a>
+                            <li class="subnavigation__list-item ">
+                                <a href="../quick-start/" class="subnavigation__link">Quick Start</a>
                             </li>
                         
                     
