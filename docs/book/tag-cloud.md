@@ -78,10 +78,12 @@ font-sizes:
 > documentation.  You can define a output separator for the [HTML cloud
 > decorator](#html-cloud-decorator).
 
-The following example shows how create the **same** tag cloud from a `Laminas\Config\Config` object.
+The following example shows how create the **same** tag cloud from a
+`Laminas\Config\Config` object.
+
+An example configuration file, e.g. `tags.ini`:
 
 ```ini
-; An example tags.ini file
 tags.1.title = "Code"
 tags.1.weight = 50
 tags.1.params.url = "/tag/code"
@@ -93,8 +95,9 @@ tags.3.weight = 2
 tags.3.params.url = "/tag/php"
 ```
 
+Create the cloud from a `Laminas\Config\Config` object:
+
 ```php
-// Create the cloud from a Laminas\Config\Config object
 $config = Laminas\Config\Factory::fromFile('tags.ini');
 $cloud = new Laminas\Tag\Cloud($config);
 
