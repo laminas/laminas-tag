@@ -41,7 +41,7 @@ foreach ($list as $item) {
 This will output the three items "Code", "Laminas", and "PHP", with the
 absolute values 10, 1 and 2:
 
-```
+```text
 Code: 10
 Laminas: 1
 PHP: 2
