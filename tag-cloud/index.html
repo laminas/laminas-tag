@@ -348,9 +348,10 @@ font-sizes:</p>
 documentation.  You can define a output separator for the <a href="#html-cloud-decorator">HTML cloud
 decorator</a>.</p>
 </blockquote>
-<p>The following example shows how create the <strong>same</strong> tag cloud from a <code>Laminas\Config\Config</code> object.</p>
-<div class=md-fenced-code-tabs id=tab-tab-group-2><ul class="nav nav-tabs"><li class=nav-item><a class="nav-link active" href=#tab-group-2-0_ini-panel role=tab id=tab-group-2-0_ini-tab data-toggle=tab data-lang=ini aria-controls=tab-group-2-0_ini-panel aria-selected=true>Ini</a></li><li class=nav-item><a class="nav-link " href=#tab-group-2-1_php-panel role=tab id=tab-group-2-1_php-tab data-toggle=tab data-lang=php aria-controls=tab-group-2-1_php-panel aria-selected=false>Php</a></li></ul><div class=tab-content><div id=tab-group-2-0_ini-panel class="tab-pane show active" role=tabpanel aria-labelledby=tab-group-2-0_ini-tab><pre class=codehilite><code class=language-ini>; An example tags.ini file
-tags.1.title = &quot;Code&quot;
+<p>The following example shows how create the <strong>same</strong> tag cloud from a
+<code>Laminas\Config\Config</code> object.</p>
+<p>An example configuration file, e.g. <code>tags.ini</code>:</p>
+<pre class=codehilite><code class=language-ini>tags.1.title = &quot;Code&quot;
 tags.1.weight = 50
 tags.1.params.url = &quot;/tag/code&quot;
 tags.2.title = &quot;Laminas&quot;
@@ -358,13 +359,13 @@ tags.2.weight = 1
 tags.2.params.url = &quot;/tag/laminas-framework&quot;
 tags.3.title = &quot;PHP&quot;
 tags.3.weight = 2
-tags.3.params.url = &quot;/tag/php&quot;</code></pre></div><div id=tab-group-2-1_php-panel class="tab-pane " role=tabpanel aria-labelledby=tab-group-2-1_php-tab><pre class=codehilite><code class=language-php>// Create the cloud from a Laminas\Config\Config object
-$config = Laminas\Config\Factory::fromFile('tags.ini');
+tags.3.params.url = &quot;/tag/php&quot;</code></pre>
+<p>Create the cloud from a <code>Laminas\Config\Config</code> object:</p>
+<pre class=codehilite><code class=language-php>$config = Laminas\Config\Factory::fromFile('tags.ini');
 $cloud = new Laminas\Tag\Cloud($config);
 
 // Render the cloud
-echo $cloud;</code></pre></div></div></div>
-
+echo $cloud;</code></pre>
 <h2 id="decorators">Decorators</h2>
 <p><code>Laminas\Tag\Cloud</code> requires two types of decorators to be able to render a tag cloud:</p>
 <ul>
