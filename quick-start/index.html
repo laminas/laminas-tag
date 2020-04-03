@@ -271,7 +271,7 @@ values based on the given relative weights of each item in it.</p>
 <h2 id="quick-start">Quick Start</h2>
 <p>This example illustrates how to create a list of tags and spread absolute weight
 values over them.</p>
-<pre class=codehilite><code class=language-php>// Create the item list
+<pre class="highlight"><code class="language-php">// Create the item list
 $list = new Laminas\Tag\ItemList();
 
 // Assign tags to it
@@ -284,11 +284,12 @@ $list-&gt;spreadWeightValues([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
 // Output the items with their absolute values
 foreach ($list as $item) {
-    printf(&quot;%s: %d\n&quot;, $item-&gt;getTitle(), $item-&gt;getParam('weightValue'));
+    printf("%s: %d\n", $item-&gt;getTitle(), $item-&gt;getParam('weightValue'));
 }</code></pre>
+
 <p>This will output the three items "Code", "Laminas", and "PHP", with the
 absolute values 10, 1 and 2:</p>
-<pre class=codehilite><code class=language-text>Code: 10
+<pre class="highlight"><code class="language-text">Code: 10
 Laminas: 1
 PHP: 2</code></pre>
 
