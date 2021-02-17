@@ -11,9 +11,6 @@ namespace LaminasTest\Tag;
 use Laminas\Tag;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group      Laminas_Tag
- */
 class ItemListTest extends TestCase
 {
     public function testArrayAccessAndCount()

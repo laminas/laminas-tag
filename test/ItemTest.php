@@ -12,9 +12,6 @@ use ArrayObject;
 use Laminas\Tag;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group      Laminas_Tag
- */
 class ItemTest extends TestCase
 {
     public function testConstructor()
@@ -77,7 +74,7 @@ class ItemTest extends TestCase
         $tag->setWeight('10');
 
         $this->assertEquals(10.0, $tag->getWeight());
-        $this->assertInternalType('float', $tag->getWeight());
+        $this->assertIsFloat($tag->getWeight());
     }
 
     public function testInvalidWeight()

@@ -12,10 +12,6 @@ use ArrayObject;
 use Laminas\Tag\Cloud\Decorator;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group      Laminas_Tag
- * @group      Laminas_Tag_Cloud
- */
 class HtmlCloudTest extends TestCase
 {
     public function testDefaultOutput()
