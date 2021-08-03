@@ -241,7 +241,7 @@ class HtmlTag extends AbstractTag
 
             $tagHTML  = sprintf(
                 '<a href="%s" %s>%s</a>',
-                $escaper->escapeHtml($tag->getParam('url')),
+                $escaper->escapeHtml($tag->getParam('url') ?? ''),
                 $attribute,
                 $escaper->escapeHtml($tag->getTitle())
             );
