@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Tag;
 
@@ -12,7 +8,20 @@ use ArrayAccess;
 use Countable;
 use Laminas\Tag\Exception\InvalidArgumentException;
 use Laminas\Tag\Exception\OutOfBoundsException;
+use ReturnTypeWillChange;
 use SeekableIterator;
+
+use function array_key_exists;
+use function array_values;
+use function count;
+use function current;
+use function floor;
+use function key;
+use function log;
+use function max;
+use function min;
+use function next;
+use function reset;
 
 class ItemList implements Countable, SeekableIterator, ArrayAccess
 {
@@ -28,6 +37,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return int
      */
+    #[ReturnTypeWillChange]
     public function count()
     {
         return count($this->items);
@@ -37,7 +47,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * Spread values in the items relative to their weight
      *
      * @param  array $values
-     * @throws InvalidArgumentException When value list is empty
+     * @throws InvalidArgumentException When value list is empty.
      * @return void
      */
     public function spreadWeightValues(array $values)
@@ -97,9 +107,10 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * Seek to an absolute position
      *
      * @param  int $index
-     * @throws OutOfBoundsException When the seek position is invalid
+     * @throws OutOfBoundsException When the seek position is invalid.
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function seek($index)
     {
         $this->rewind();
@@ -120,6 +131,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return mixed
      */
+    #[ReturnTypeWillChange]
     public function current()
     {
         return current($this->items);
@@ -130,6 +142,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return mixed
      */
+    #[ReturnTypeWillChange]
     public function next()
     {
         return next($this->items);
@@ -140,6 +153,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return mixed
      */
+    #[ReturnTypeWillChange]
     public function key()
     {
         return key($this->items);
@@ -150,9 +164,10 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return bool
      */
+    #[ReturnTypeWillChange]
     public function valid()
     {
-        return ($this->current() !== false);
+        return $this->current() !== false;
     }
 
     /**
@@ -160,6 +175,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function rewind()
     {
         reset($this->items);
@@ -171,6 +187,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * @param  mixed $offset
      * @return bool
      */
+    #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return array_key_exists($offset, $this->items);
@@ -182,6 +199,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * @param  mixed $offset
      * @return TaggableInterface
      */
+    #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->items[$offset];
@@ -192,14 +210,15 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @param  mixed          $offset
      * @param  TaggableInterface $item
-     * @throws OutOfBoundsException When item does not implement Laminas\Tag\TaggableInterface
+     * @throws OutOfBoundsException When item does not implement Laminas\Tag\TaggableInterface.
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetSet($offset, $item)
     {
         // We need to make that check here, as the method signature must be
         // compatible with ArrayAccess::offsetSet()
-        if (! ($item instanceof TaggableInterface)) {
+        if (! $item instanceof TaggableInterface) {
             throw new OutOfBoundsException('Item must implement Laminas\Tag\TaggableInterface');
         }
 
@@ -216,6 +235,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * @param  mixed $offset
      * @return void
      */
+    #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->items[$offset]);

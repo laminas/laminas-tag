@@ -1,15 +1,12 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Tag;
 
 use ArrayObject;
 use Laminas\Tag;
+use Laminas\Tag\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class ItemTest extends TestCase
@@ -17,11 +14,11 @@ class ItemTest extends TestCase
     public function testConstructor()
     {
         $tag = new Tag\Item([
-            'title' => 'foo',
+            'title'  => 'foo',
             'weight' => 10,
             'params' => [
-                'bar' => 'baz'
-            ]
+                'bar' => 'baz',
+            ],
         ]);
 
         $this->assertEquals('foo', $tag->getTitle());
@@ -33,11 +30,11 @@ class ItemTest extends TestCase
     {
         $tag = new Tag\Item(['title' => 'foo', 'weight' => 1]);
         $tag->setOptions([
-            'title' => 'bar',
+            'title'  => 'bar',
             'weight' => 10,
             'params' => [
-                'bar' => 'baz'
-            ]
+                'bar' => 'baz',
+            ],
         ]);
 
         $this->assertEquals('bar', $tag->getTitle());
@@ -63,7 +60,7 @@ class ItemTest extends TestCase
 
     public function testInvalidTitle()
     {
-        $this->expectException('\Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Title must be a string');
         $tag = new Tag\Item(['title' => 10, 'weight' => 1]);
     }
@@ -79,7 +76,7 @@ class ItemTest extends TestCase
 
     public function testInvalidWeight()
     {
-        $this->expectException('\Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Weight must be numeric');
         $tag = new Tag\Item(['title' => 'foo', 'weight' => 'foobar']);
     }
@@ -92,21 +89,21 @@ class ItemTest extends TestCase
 
     public function testInvalidOptions()
     {
-        $this->expectException('\Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid options provided to constructor');
         $tag = new Tag\Item('test');
     }
 
     public function testMissingTitle()
     {
-        $this->expectException('\Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Title was not set');
         $tag = new Tag\Item(['weight' => 1]);
     }
 
     public function testMissingWeight()
     {
-        $this->expectException('\Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Weight was not set');
         $tag = new Tag\Item(['title' => 'foo']);
     }

@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Tag\Cloud;
 
@@ -12,6 +8,13 @@ use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 use RuntimeException;
+use Zend\Tag\Cloud\Decorator\HtmlCloud;
+use Zend\Tag\Cloud\Decorator\HtmlTag;
+
+use function get_class;
+use function gettype;
+use function is_object;
+use function sprintf;
 
 /**
  * Plugin manager implementation for decorators.
@@ -22,6 +25,7 @@ use RuntimeException;
  */
 class DecoratorPluginManager extends AbstractPluginManager
 {
+    /** @var array<string, string> */
     protected $aliases = [
         'htmlcloud' => Decorator\HtmlCloud::class,
         'htmlCloud' => Decorator\HtmlCloud::class,
@@ -35,14 +39,15 @@ class DecoratorPluginManager extends AbstractPluginManager
         'Tag'       => Decorator\HtmlTag::class,
 
         // Legacy Zend Framework aliases
-        \Zend\Tag\Cloud\Decorator\HtmlCloud::class => Decorator\HtmlCloud::class,
-        \Zend\Tag\Cloud\Decorator\HtmlTag::class => Decorator\HtmlTag::class,
+        HtmlCloud::class => Decorator\HtmlCloud::class,
+        HtmlTag::class   => Decorator\HtmlTag::class,
 
         // v2 normalized FQCNs
         'zendtagclouddecoratorhtmlcloud' => Decorator\HtmlCloud::class,
-        'zendtagclouddecoratorhtmltag' => Decorator\HtmlTag::class,
+        'zendtagclouddecoratorhtmltag'   => Decorator\HtmlTag::class,
     ];
 
+    /** @var array<string, string> */
     protected $factories = [
         Decorator\HtmlCloud::class => InvokableFactory::class,
         Decorator\HtmlTag::class   => InvokableFactory::class,
@@ -50,9 +55,10 @@ class DecoratorPluginManager extends AbstractPluginManager
         // alias is used to look up the factory, while the non-normalized
         // resolved alias is used as the requested name passed to the factory.
         'laminastagclouddecoratorhtmlcloud' => InvokableFactory::class,
-        'laminastagclouddecoratorhtmltag'   => InvokableFactory::class
+        'laminastagclouddecoratorhtmltag'   => InvokableFactory::class,
     ];
 
+    /** @var string */
     protected $instanceOf = Decorator\DecoratorInterface::class;
 
     /**
@@ -68,9 +74,9 @@ class DecoratorPluginManager extends AbstractPluginManager
         if (! $instance instanceof $this->instanceOf) {
             throw new InvalidServiceException(sprintf(
                 '%s can only create instances of %s; %s is invalid',
-                get_class($this),
+                static::class,
                 $this->instanceOf,
-                (is_object($instance) ? get_class($instance) : gettype($instance))
+                is_object($instance) ? get_class($instance) : gettype($instance)
             ));
         }
     }

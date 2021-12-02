@@ -1,16 +1,15 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Tag\Cloud\Decorator;
 
 use ArrayObject;
 use Laminas\Tag;
 use Laminas\Tag\Cloud\Decorator;
+use Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException;
+use Laminas\Tag\Exception\InvalidAttributeNameException;
+use Laminas\Tag\Exception\InvalidElementNameException;
 use PHPUnit\Framework\TestCase;
 
 class HtmlTagTest extends TestCase
@@ -18,9 +17,11 @@ class HtmlTagTest extends TestCase
     public function testDefaultOutput()
     {
         $decorator = new Decorator\HtmlTag();
-        $expected  = ['<li><a href="http://first" style="font-size: 10px;">foo</a></li>',
-                           '<li><a href="http://second" style="font-size: 13px;">bar</a></li>',
-                           '<li><a href="http://third" style="font-size: 20px;">baz</a></li>'];
+        $expected  = [
+            '<li><a href="http://first" style="font-size: 10px;">foo</a></li>',
+            '<li><a href="http://second" style="font-size: 13px;">bar</a></li>',
+            '<li><a href="http://third" style="font-size: 20px;">baz</a></li>',
+        ];
 
         $this->assertEquals($decorator->render($this->_getTagList()), $expected);
     }
@@ -29,9 +30,11 @@ class HtmlTagTest extends TestCase
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHtmlTags(['span' => ['class' => 'tag'], 'li']);
-        $expected  = ['<li><span class="tag"><a href="http://first" style="font-size: 10px;">foo</a></span></li>',
-                           '<li><span class="tag"><a href="http://second" style="font-size: 13px;">bar</a></span></li>',
-                           '<li><span class="tag"><a href="http://third" style="font-size: 20px;">baz</a></span></li>'];
+        $expected = [
+            '<li><span class="tag"><a href="http://first" style="font-size: 10px;">foo</a></span></li>',
+            '<li><span class="tag"><a href="http://second" style="font-size: 13px;">bar</a></span></li>',
+            '<li><span class="tag"><a href="http://third" style="font-size: 20px;">baz</a></span></li>',
+        ];
 
         $this->assertEquals($decorator->render($this->_getTagList()), $expected);
     }
@@ -43,9 +46,11 @@ class HtmlTagTest extends TestCase
                   ->setMinFontSize(5)
                   ->setMaxFontSize(50);
 
-        $expected  = ['<li><a href="http://first" style="font-size: 5pt;">foo</a></li>',
-                           '<li><a href="http://second" style="font-size: 15pt;">bar</a></li>',
-                           '<li><a href="http://third" style="font-size: 50pt;">baz</a></li>'];
+        $expected = [
+            '<li><a href="http://first" style="font-size: 5pt;">foo</a></li>',
+            '<li><a href="http://second" style="font-size: 15pt;">bar</a></li>',
+            '<li><a href="http://third" style="font-size: 50pt;">baz</a></li>',
+        ];
 
         $this->assertEquals($decorator->render($this->_getTagList()), $expected);
     }
@@ -55,9 +60,11 @@ class HtmlTagTest extends TestCase
         $decorator = new Decorator\HtmlTag();
         $decorator->setClassList(['small', 'medium', 'large']);
 
-        $expected  = ['<li><a href="http://first" class="small">foo</a></li>',
-                           '<li><a href="http://second" class="medium">bar</a></li>',
-                           '<li><a href="http://third" class="large">baz</a></li>'];
+        $expected = [
+            '<li><a href="http://first" class="small">foo</a></li>',
+            '<li><a href="http://second" class="medium">bar</a></li>',
+            '<li><a href="http://third" class="large">baz</a></li>',
+        ];
 
         $this->assertEquals($decorator->render($this->_getTagList()), $expected);
     }
@@ -66,7 +73,7 @@ class HtmlTagTest extends TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->expectException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Classlist is empty');
         $decorator->setClassList([]);
     }
@@ -75,7 +82,7 @@ class HtmlTagTest extends TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->expectException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Classlist contains an invalid classname');
         $decorator->setClassList([[]]);
     }
@@ -84,7 +91,7 @@ class HtmlTagTest extends TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->expectException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid fontsize unit specified');
         $decorator->setFontSizeUnit('foo');
     }
@@ -93,7 +100,7 @@ class HtmlTagTest extends TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->expectException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Fontsize must be numeric');
         $decorator->setMinFontSize('foo');
     }
@@ -102,7 +109,7 @@ class HtmlTagTest extends TestCase
     {
         $decorator = new Decorator\HtmlTag();
 
-        $this->expectException('Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Fontsize must be numeric');
         $decorator->setMaxFontSize('foo');
     }
@@ -124,8 +131,8 @@ class HtmlTagTest extends TestCase
     public function testConstructorWithConfig()
     {
         $decorator = new Decorator\HtmlTag(new ArrayObject([
-            'minFontSize' => 5,
-            'maxFontSize' => 10,
+            'minFontSize'  => 5,
+            'maxFontSize'  => 10,
             'fontSizeUnit' => 'pt',
         ]));
 
@@ -162,11 +169,11 @@ class HtmlTagTest extends TestCase
         return $list;
     }
 
-    public function getTags()
+    public function getTags(): Tag\ItemList
     {
-        $tags = new Tag\ItemList();
+        $tags   = new Tag\ItemList();
         $tags[] = new Tag\Item([
-            'title' => 'tag',
+            'title'  => 'tag',
             'weight' => 1,
             'params' => [
                 'url' => 'http://testing',
@@ -175,59 +182,69 @@ class HtmlTagTest extends TestCase
         return $tags;
     }
 
-    public function invalidHtmlElementProvider()
+    /** @psalm-return array<array-key, array{0: list<string>|array<string, array>}> */
+    public function invalidHtmlElementProvider(): array
     {
         return [
             [['_foo']],
             [['&foo']],
             [[' foo']],
             [[' foo']],
-            [[
-                '_foo' => [],
-            ]],
+            [
+                [
+                    '_foo' => [],
+                ],
+            ],
         ];
     }
 
     /**
      * @dataProvider invalidHtmlElementProvider
      */
-    public function testInvalidElementNamesRaiseAnException($tags)
+    public function testInvalidElementNamesRaiseAnException(array $tags)
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHTMLTags($tags);
-        $this->expectException('Laminas\Tag\Exception\InvalidElementNameException');
+        $this->expectException(InvalidElementNameException::class);
         $decorator->render($this->getTags());
     }
 
-    public function invalidAttributeProvider()
+    /** @psalm-return array<array-key, array{0: array<string, map>}> */
+    public function invalidAttributeProvider(): array
     {
         return [
-            [[
-                'foo' => [
-                    '&bar' => 'baz',
+            [
+                [
+                    'foo' => [
+                        '&bar' => 'baz',
+                    ],
                 ],
-            ]],
-            [[
-                'foo' => [
-                    ':bar&baz' => 'bat',
+            ],
+            [
+                [
+                    'foo' => [
+                        ':bar&baz' => 'bat',
+                    ],
                 ],
-            ]],
-            [[
-                'foo' => [
-                    'bar/baz' => 'bat',
+            ],
+            [
+                [
+                    'foo' => [
+                        'bar/baz' => 'bat',
+                    ],
                 ],
-            ]],
+            ],
         ];
     }
 
     /**
      * @dataProvider invalidAttributeProvider
      */
-    public function testInvalidAttributesRaiseAnException($tags)
+    public function testInvalidAttributesRaiseAnException(array $tags)
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHTMLTags($tags);
-        $this->expectException('Laminas\Tag\Exception\InvalidAttributeNameException');
+        $this->expectException(InvalidAttributeNameException::class);
         $decorator->render($this->getTags());
     }
 }

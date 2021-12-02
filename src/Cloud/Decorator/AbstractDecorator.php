@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Tag\Cloud\Decorator;
 
@@ -14,19 +10,22 @@ use Laminas\Tag\Cloud\Decorator\DecoratorInterface as Decorator;
 use Laminas\Tag\Exception;
 use Traversable;
 
+use function in_array;
+use function is_array;
+use function method_exists;
+use function preg_match;
+use function sprintf;
+use function strtolower;
+
 /**
  * Abstract class for decorators
  */
 abstract class AbstractDecorator implements Decorator
 {
-    /**
-     * @var string Encoding to use
-     */
+    /** @var string Encoding to use */
     protected $encoding = 'UTF-8';
 
-    /**
-     * @var Escaper
-     */
+    /** @var Escaper */
     protected $escaper;
 
     /**
@@ -89,7 +88,7 @@ abstract class AbstractDecorator implements Decorator
     /**
      * Set encoding
      *
-     * @param string
+     * @param string $value
      * @return HTMLCloud
      */
     public function setEncoding($value)

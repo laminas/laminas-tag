@@ -1,18 +1,30 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Tag;
 
+use Exception;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\Stdlib\ArrayUtils;
 use Laminas\Tag\Cloud\Decorator\HtmlCloud;
 use Laminas\Tag\Cloud\Decorator\HtmlTag;
+use Laminas\Tag\Exception\InvalidArgumentException;
 use Traversable;
+
+use function count;
+use function get_class;
+use function gettype;
+use function in_array;
+use function is_array;
+use function is_object;
+use function is_string;
+use function method_exists;
+use function sprintf;
+use function strtolower;
+use function trigger_error;
+
+use const E_USER_WARNING;
 
 class Cloud
 {
@@ -21,28 +33,28 @@ class Cloud
      *
      * @var Cloud\Decorator\AbstractCloud
      */
-    protected $cloudDecorator = null;
+    protected $cloudDecorator;
 
     /**
      * DecoratorInterface for the tags
      *
      * @var Cloud\Decorator\AbstractTag
      */
-    protected $tagDecorator = null;
+    protected $tagDecorator;
 
     /**
      * List of all tags
      *
      * @var ItemList
      */
-    protected $tags = null;
+    protected $tags;
 
     /**
      * Plugin manager for decorators
      *
      * @var Cloud\DecoratorPluginManager
      */
-    protected $decorators = null;
+    protected $decorators;
 
     /**
      * Option keys to skip when calling setOptions()
@@ -101,7 +113,7 @@ class Cloud
      * decorators.
      *
      * @param  array $tags
-     * @throws Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return Cloud
      */
     public function setTags(array $tags)
@@ -116,7 +128,7 @@ class Cloud
      * Append a single tag to the cloud
      *
      * @param  TaggableInterface|array $tag
-     * @throws Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return Cloud
      */
     public function appendTag($tag)
@@ -129,10 +141,10 @@ class Cloud
         }
 
         if (! is_array($tag)) {
-            throw new Exception\InvalidArgumentException(sprintf(
+            throw new InvalidArgumentException(sprintf(
                 'Tag must be an instance of %s\TaggableInterface or an array; received "%s"',
                 __NAMESPACE__,
-                (is_object($tag) ? get_class($tag) : gettype($tag))
+                is_object($tag) ? get_class($tag) : gettype($tag)
             ));
         }
 
@@ -144,7 +156,6 @@ class Cloud
     /**
      * Set the item list
      *
-     * @param  ItemList $itemList
      * @return Cloud
      */
     public function setItemList(ItemList $itemList)
@@ -172,7 +183,7 @@ class Cloud
      * Set the decorator for the cloud
      *
      * @param  mixed $decorator
-     * @throws Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return Cloud
      */
     public function setCloudDecorator($decorator)
@@ -193,8 +204,8 @@ class Cloud
             $decorator = $this->getDecoratorPluginManager()->get($decorator, $options);
         }
 
-        if (! ($decorator instanceof Cloud\Decorator\AbstractCloud)) {
-            throw new Exception\InvalidArgumentException(
+        if (! $decorator instanceof Cloud\Decorator\AbstractCloud) {
+            throw new InvalidArgumentException(
                 'DecoratorInterface is no instance of Cloud\Decorator\AbstractCloud'
             );
         }
@@ -221,7 +232,7 @@ class Cloud
      * Set the decorator for the tags
      *
      * @param  mixed $decorator
-     * @throws Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return Cloud
      */
     public function setTagDecorator($decorator)
@@ -242,8 +253,8 @@ class Cloud
             $decorator = $this->getDecoratorPluginManager()->get($decorator, $options);
         }
 
-        if (! ($decorator instanceof Cloud\Decorator\AbstractTag)) {
-            throw new Exception\InvalidArgumentException(
+        if (! $decorator instanceof Cloud\Decorator\AbstractTag) {
+            throw new InvalidArgumentException(
                 'DecoratorInterface is no instance of Cloud\Decorator\AbstractTag'
             );
         }
@@ -269,7 +280,6 @@ class Cloud
     /**
      * Set plugin manager for use with decorators
      *
-     * @param  Cloud\DecoratorPluginManager $decorators
      * @return Cloud
      */
     public function setDecoratorPluginManager(Cloud\DecoratorPluginManager $decorators)
@@ -305,10 +315,8 @@ class Cloud
             return '';
         }
 
-        $tagsResult  = $this->getTagDecorator()->render($tags);
-        $cloudResult = $this->getCloudDecorator()->render($tagsResult);
-
-        return $cloudResult;
+        $tagsResult = $this->getTagDecorator()->render($tags);
+        return $this->getCloudDecorator()->render($tagsResult);
     }
 
     /**
@@ -319,11 +327,13 @@ class Cloud
     public function __toString()
     {
         try {
-            $result = $this->render();
-            return $result;
-        } catch (\Exception $e) {
-            $message = "Exception caught by tag cloud: " . $e->getMessage()
-                     . "\nStack Trace:\n" . $e->getTraceAsString();
+            return $this->render();
+        } catch (Exception $e) {
+            $message = sprintf(
+                "Exception caught by tag cloud: %s\nStack Trace:\n%s",
+                $e->getMessage(),
+                $e->getTraceAsString()
+            );
             trigger_error($message, E_USER_WARNING);
             return '';
         }

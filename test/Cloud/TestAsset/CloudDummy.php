@@ -1,24 +1,23 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Tag\Cloud\TestAsset;
 
-class CloudDummy extends \Laminas\Tag\Cloud\Decorator\HtmlCloud
-{
-    // @codingStandardsIgnoreStart
-    protected $_foo;
-    // @codingStandardsIgnoreEnd
+use Laminas\Tag\Cloud\Decorator\HtmlCloud;
 
+class CloudDummy extends HtmlCloud
+{
+    // phpcs:ignore
+    protected $_foo;
+
+    /** @param mixed $value */
     public function setFoo($value)
     {
         $this->_foo = $value;
     }
 
+    /** @return mixed */
     public function getFoo()
     {
         return $this->_foo;
