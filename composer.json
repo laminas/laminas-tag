@@ -19,15 +19,14 @@
         "sort-packages": true
     },
     "require": {
-        "php": "^7.3 || ~8.0.0",
-        "laminas/laminas-escaper": "^2.7",
-        "laminas/laminas-stdlib": "^3.3",
-        "laminas/laminas-zendframework-bridge": "^1.0"
+        "php": "^7.4 || ~8.0.0 || ~8.1.0",
+        "laminas/laminas-escaper": "^2.9",
+        "laminas/laminas-stdlib": "^3.6"
     },
     "require-dev": {
-        "laminas/laminas-coding-standard": "~1.0.0",
-        "laminas/laminas-servicemanager": "^3.4.1",
-        "phpunit/phpunit": "^9.3"
+        "laminas/laminas-coding-standard": "~2.3",
+        "laminas/laminas-servicemanager": "^3.8",
+        "phpunit/phpunit": "^9.5.5"
     },
     "suggest": {
         "laminas/laminas-servicemanager": "Laminas\\ServiceManager component"
@@ -52,7 +51,7 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "replace": {
-        "zendframework/zend-tag": "^2.7.1"
+    "conflict": {
+        "zendframework/zend-tag": "*"
     }
 }
