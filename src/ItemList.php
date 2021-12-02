@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Tag;
 
@@ -13,6 +9,18 @@ use Countable;
 use Laminas\Tag\Exception\InvalidArgumentException;
 use Laminas\Tag\Exception\OutOfBoundsException;
 use SeekableIterator;
+
+use function array_key_exists;
+use function array_values;
+use function count;
+use function current;
+use function floor;
+use function key;
+use function log;
+use function max;
+use function min;
+use function next;
+use function reset;
 
 class ItemList implements Countable, SeekableIterator, ArrayAccess
 {
@@ -37,7 +45,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * Spread values in the items relative to their weight
      *
      * @param  array $values
-     * @throws InvalidArgumentException When value list is empty
+     * @throws InvalidArgumentException When value list is empty.
      * @return void
      */
     public function spreadWeightValues(array $values)
@@ -97,7 +105,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * Seek to an absolute position
      *
      * @param  int $index
-     * @throws OutOfBoundsException When the seek position is invalid
+     * @throws OutOfBoundsException When the seek position is invalid.
      * @return void
      */
     public function seek($index)
@@ -152,7 +160,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      */
     public function valid()
     {
-        return ($this->current() !== false);
+        return $this->current() !== false;
     }
 
     /**
@@ -192,14 +200,14 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @param  mixed          $offset
      * @param  TaggableInterface $item
-     * @throws OutOfBoundsException When item does not implement Laminas\Tag\TaggableInterface
+     * @throws OutOfBoundsException When item does not implement Laminas\Tag\TaggableInterface.
      * @return void
      */
     public function offsetSet($offset, $item)
     {
         // We need to make that check here, as the method signature must be
         // compatible with ArrayAccess::offsetSet()
-        if (! ($item instanceof TaggableInterface)) {
+        if (! $item instanceof TaggableInterface) {
             throw new OutOfBoundsException('Item must implement Laminas\Tag\TaggableInterface');
         }
 

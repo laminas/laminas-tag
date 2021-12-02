@@ -1,15 +1,13 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Tag\Cloud\Decorator;
 
 use ArrayObject;
 use Laminas\Tag\Cloud\Decorator;
+use Laminas\Tag\Exception\InvalidAttributeNameException;
+use Laminas\Tag\Exception\InvalidElementNameException;
 use PHPUnit\Framework\TestCase;
 
 class HtmlCloudTest extends TestCase
@@ -22,8 +20,8 @@ class HtmlCloudTest extends TestCase
             '<ul class="laminas-tag-cloud">foo bar</ul>',
             $decorator->render(
                 [
-                     'foo',
-                     'bar'
+                    'foo',
+                    'bar',
                 ]
             )
         );
@@ -34,8 +32,8 @@ class HtmlCloudTest extends TestCase
         $decorator = new Decorator\HtmlCloud();
         $decorator->setHtmlTags(
             [
-                 'span',
-                 'div' => ['id' => 'tag-cloud']
+                'span',
+                'div' => ['id' => 'tag-cloud'],
             ]
         );
 
@@ -43,8 +41,8 @@ class HtmlCloudTest extends TestCase
             '<div id="tag-cloud"><span>foo bar</span></div>',
             $decorator->render(
                 [
-                     'foo',
-                     'bar'
+                    'foo',
+                    'bar',
                 ]
             )
         );
@@ -59,8 +57,8 @@ class HtmlCloudTest extends TestCase
             '<ul class="laminas-tag-cloud">foo-bar</ul>',
             $decorator->render(
                 [
-                     'foo',
-                     'bar'
+                    'foo',
+                    'bar',
                 ]
             )
         );
@@ -77,7 +75,7 @@ class HtmlCloudTest extends TestCase
             '<div>foo bar</div>',
             $decorator->render([
                 'foo',
-                'bar'
+                'bar',
             ])
         );
     }
@@ -91,14 +89,14 @@ class HtmlCloudTest extends TestCase
     {
         $decorator = new Decorator\HtmlCloud(new ArrayObject([
             'htmlTags'  => ['div'],
-            'separator' => ' '
+            'separator' => ' ',
         ]));
 
         $this->assertEquals(
             '<div>foo bar</div>',
             $decorator->render([
                 'foo',
-                'bar'
+                'bar',
             ])
         );
     }
@@ -108,14 +106,14 @@ class HtmlCloudTest extends TestCase
         $decorator = new Decorator\HtmlCloud();
         $decorator->setOptions([
             'htmlTags'  => ['div'],
-            'separator' => ' '
+            'separator' => ' ',
         ]);
 
         $this->assertEquals(
             '<div>foo bar</div>',
             $decorator->render([
                 'foo',
-                'bar'
+                'bar',
             ])
         );
     }
@@ -126,7 +124,8 @@ class HtmlCloudTest extends TestCase
         // In case would fail due to an error
     }
 
-    public function invalidHtmlTagProvider()
+    /** @psalm-return array<array-key, array{0: string[]|array<string, array>}> */
+    public function invalidHtmlTagProvider(): array
     {
         return [
             [['_foo']],
@@ -136,7 +135,7 @@ class HtmlCloudTest extends TestCase
             [
                 [
                     '_foo' => [],
-                ]
+                ],
             ],
         ];
     }
@@ -144,15 +143,16 @@ class HtmlCloudTest extends TestCase
     /**
      * @dataProvider invalidHtmlTagProvider
      */
-    public function testInvalidHtmlTagsRaiseAnException($tags)
+    public function testInvalidHtmlTagsRaiseAnException(array $tags)
     {
         $decorator = new Decorator\HtmlCloud();
         $decorator->setHTMLTags($tags);
-        $this->expectException('Laminas\Tag\Exception\InvalidElementNameException');
+        $this->expectException(InvalidElementNameException::class);
         $decorator->render([]);
     }
 
-    public function invalidAttributeProvider()
+    /** @psalm-return array<array-key, array{0: array<string, map>}> */
+    public function invalidAttributeProvider(): array
     {
         return [
             [
@@ -160,21 +160,21 @@ class HtmlCloudTest extends TestCase
                     'foo' => [
                         '&bar' => 'baz',
                     ],
-                ]
+                ],
             ],
             [
                 [
                     'foo' => [
                         ':bar&baz' => 'bat',
                     ],
-                ]
+                ],
             ],
             [
                 [
                     'foo' => [
                         'bar/baz' => 'bat',
                     ],
-                ]
+                ],
             ],
         ];
     }
@@ -182,11 +182,11 @@ class HtmlCloudTest extends TestCase
     /**
      * @dataProvider invalidAttributeProvider
      */
-    public function testInvalidAttributeNamesRaiseAnException($tags)
+    public function testInvalidAttributeNamesRaiseAnException(array $tags)
     {
         $decorator = new Decorator\HtmlCloud();
         $decorator->setHTMLTags($tags);
-        $this->expectException('Laminas\Tag\Exception\InvalidAttributeNameException');
+        $this->expectException(InvalidAttributeNameException::class);
         $decorator->render([]);
     }
 }

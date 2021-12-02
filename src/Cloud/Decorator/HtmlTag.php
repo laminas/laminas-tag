@@ -1,15 +1,23 @@
-<?php
+<?php // phpcs:disable WebimpressCodingStandard.NamingConventions.ValidVariableName.NotCamelCaps
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+
+declare(strict_types=1);
 
 namespace Laminas\Tag\Cloud\Decorator;
 
 use Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException;
 use Laminas\Tag\ItemList;
+
+use function count;
+use function get_class;
+use function gettype;
+use function in_array;
+use function is_array;
+use function is_numeric;
+use function is_object;
+use function is_string;
+use function range;
+use function sprintf;
 
 /**
  * Simple HTML decorator for tags
@@ -22,7 +30,7 @@ class HtmlTag extends AbstractTag
      *
      * @var array
      */
-    protected $classList = null;
+    protected $classList;
 
     /**
      * Unit for the fontsize
@@ -44,7 +52,7 @@ class HtmlTag extends AbstractTag
      * @var array
      */
     protected $htmlTags = [
-        'li'
+        'li',
     ];
 
     /**
@@ -65,11 +73,11 @@ class HtmlTag extends AbstractTag
      * Set a list of classes to use instead of fontsizes
      *
      * @param  array $classList
-     * @throws InvalidArgumentException When the classlist is empty
-     * @throws InvalidArgumentException When the classlist contains an invalid classname
-     * @return HTMLTag
+     * @throws InvalidArgumentException When the classlist is empty.
+     * @throws InvalidArgumentException When the classlist contains an invalid classname.
+     * @return HtmlTag
      */
-    public function setClassList(array $classList = null)
+    public function setClassList(?array $classList = null)
     {
         if (is_array($classList)) {
             if (count($classList) === 0) {
@@ -103,8 +111,8 @@ class HtmlTag extends AbstractTag
      * Possible values are: em, ex, px, in, cm, mm, pt, pc and %
      *
      * @param  string $fontSizeUnit
-     * @throws InvalidArgumentException When an invalid fontsize unit is specified
-     * @return HTMLTag
+     * @throws InvalidArgumentException When an invalid fontsize unit is specified.
+     * @return HtmlTag
      */
     public function setFontSizeUnit($fontSizeUnit)
     {
@@ -126,12 +134,13 @@ class HtmlTag extends AbstractTag
     {
         return $this->fontSizeUnit;
     }
+
      /**
-     * Set the HTML tags surrounding the <a> element
-     *
-     * @param  array $htmlTags
-     * @return HTMLTag
-     */
+      * Set the HTML tags surrounding the <a> element
+      *
+      * @param  array $htmlTags
+      * @return HtmlTag
+      */
     public function setHTMLTags(array $htmlTags)
     {
         $this->htmlTags = $htmlTags;
@@ -152,8 +161,8 @@ class HtmlTag extends AbstractTag
      * Set maximum font size
      *
      * @param  int $maxFontSize
-     * @throws InvalidArgumentException When fontsize is not numeric
-     * @return HTMLTag
+     * @throws InvalidArgumentException When fontsize is not numeric.
+     * @return HtmlTag
      */
     public function setMaxFontSize($maxFontSize)
     {
@@ -180,8 +189,8 @@ class HtmlTag extends AbstractTag
      * Set minimum font size
      *
      * @param  int $minFontSize
-     * @throws InvalidArgumentException When fontsize is not numeric
-     * @return HTMLTag
+     * @throws InvalidArgumentException When fontsize is not numeric.
+     * @return HtmlTag
      */
     public function setMinFontSize($minFontSize)
     {
@@ -216,7 +225,7 @@ class HtmlTag extends AbstractTag
         if (! $tags instanceof ItemList) {
             throw new InvalidArgumentException(sprintf(
                 'HtmlTag::render() expects a Laminas\Tag\ItemList argument; received "%s"',
-                (is_object($tags) ? get_class($tags) : gettype($tags))
+                is_object($tags) ? get_class($tags) : gettype($tags)
             ));
         }
         if (null === ($weightValues = $this->getClassList())) {
@@ -236,14 +245,14 @@ class HtmlTag extends AbstractTag
                     $this->getFontSizeUnit()
                 );
             } else {
-                $attribute = sprintf('class="%s"', $escaper->escapeHtmlAttr($tag->getParam('weightValue')));
+                $attribute = sprintf('class="%s"', $escaper->escapeHtmlAttr($tag->getParam('weightValue' ?? '')));
             }
 
             $tagHTML  = sprintf(
                 '<a href="%s" %s>%s</a>',
-                $escaper->escapeHtml($tag->getParam('url')),
+                $escaper->escapeHtml($tag->getParam('url') ?? ''),
                 $attribute,
-                $escaper->escapeHtml($tag->getTitle())
+                $escaper->escapeHtml($tag->getTitle() ?? '')
             );
             $tagHTML  = $this->wrapTag($tagHTML);
             $result[] = $tagHTML;

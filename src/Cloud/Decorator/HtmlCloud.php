@@ -1,12 +1,16 @@
-<?php
+<?php // phpcs:disable WebimpressCodingStandard.NamingConventions.ValidVariableName.NotCamelCaps
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+
+declare(strict_types=1);
 
 namespace Laminas\Tag\Cloud\Decorator;
+
+use function get_class;
+use function gettype;
+use function implode;
+use function is_array;
+use function is_object;
+use function sprintf;
 
 /**
  * Simple HTML decorator for clouds
@@ -33,7 +37,7 @@ class HtmlCloud extends AbstractCloud
      * Set the HTML tags surrounding all tags
      *
      * @param  array $htmlTags
-     * @return HTMLCloud
+     * @return HtmlCloud
      */
     public function setHTMLTags(array $htmlTags)
     {
@@ -54,8 +58,8 @@ class HtmlCloud extends AbstractCloud
     /**
      * Set the separator between the single tags
      *
-     * @param  string
-     * @return HTMLCloud
+     * @param  string $separator
+     * @return HtmlCloud
      */
     public function setSeparator($separator)
     {
@@ -85,7 +89,7 @@ class HtmlCloud extends AbstractCloud
         if (! is_array($tags)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'HtmlCloud::render() expects an array argument; received "%s"',
-                (is_object($tags) ? get_class($tags) : gettype($tags))
+                is_object($tags) ? get_class($tags) : gettype($tags)
             ));
         }
         $cloudHTML = implode($this->getSeparator(), $tags);

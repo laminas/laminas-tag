@@ -1,15 +1,15 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Tag;
 
 use Laminas\Tag;
+use Laminas\Tag\Exception\InvalidArgumentException;
+use Laminas\Tag\Exception\OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
+
+use function count;
 
 class ItemListTest extends TestCase
 {
@@ -58,7 +58,7 @@ class ItemListTest extends TestCase
         }
         $list->seek(2);
 
-        $this->expectException('Laminas\Tag\Exception\OutOfBoundsException');
+        $this->expectException(OutOfBoundsException::class);
         $this->expectExceptionMessage('Invalid seek position');
         $list->seek(3);
     }
@@ -67,7 +67,7 @@ class ItemListTest extends TestCase
     {
         $list = new Tag\ItemList();
 
-        $this->expectException('\Laminas\Tag\Exception\OutOfBoundsException');
+        $this->expectException(OutOfBoundsException::class);
         $this->expectExceptionMessage('Item must implement Laminas\Tag\TaggableInterface');
         $list[] = 'test';
     }
@@ -116,7 +116,7 @@ class ItemListTest extends TestCase
     {
         $list = new Tag\ItemList();
 
-        $this->expectException('Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Value list may not be empty');
         $list->spreadWeightValues([]);
     }

@@ -1,15 +1,19 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace Laminas\Tag;
 
 use Laminas\Stdlib\ArrayUtils;
+use Laminas\Tag\Exception\InvalidArgumentException;
 use Traversable;
+
+use function in_array;
+use function is_array;
+use function is_numeric;
+use function is_string;
+use function method_exists;
+use function strtolower;
 
 class Item implements TaggableInterface
 {
@@ -18,14 +22,14 @@ class Item implements TaggableInterface
      *
      * @var string
      */
-    protected $title = null;
+    protected $title;
 
     /**
      * Weight of the tag
      *
      * @var float
      */
-    protected $weight = null;
+    protected $weight;
 
     /**
      * Custom parameters
@@ -41,16 +45,16 @@ class Item implements TaggableInterface
      */
     protected $skipOptions = [
         'options',
-        'param'
+        'param',
     ];
 
     /**
      * Create a new tag according to the options
      *
      * @param  array|Traversable $options
-     * @throws \Laminas\Tag\Exception\InvalidArgumentException When invalid options are provided
-     * @throws \Laminas\Tag\Exception\InvalidArgumentException When title was not set
-     * @throws \Laminas\Tag\Exception\InvalidArgumentException When weight was not set
+     * @throws InvalidArgumentException When invalid options are provided.
+     * @throws InvalidArgumentException When title was not set.
+     * @throws InvalidArgumentException When weight was not set.
      */
     public function __construct($options)
     {
@@ -59,17 +63,17 @@ class Item implements TaggableInterface
         }
 
         if (! is_array($options)) {
-            throw new Exception\InvalidArgumentException('Invalid options provided to constructor');
+            throw new InvalidArgumentException('Invalid options provided to constructor');
         }
 
         $this->setOptions($options);
 
         if ($this->title === null) {
-            throw new Exception\InvalidArgumentException('Title was not set');
+            throw new InvalidArgumentException('Title was not set');
         }
 
         if ($this->weight === null) {
-            throw new Exception\InvalidArgumentException('Weight was not set');
+            throw new InvalidArgumentException('Weight was not set');
         }
     }
 
@@ -77,7 +81,7 @@ class Item implements TaggableInterface
      * Set options of the tag
      *
      * @param  array $options
-     * @return \Laminas\Tag\Item
+     * @return Item
      */
     public function setOptions(array $options)
     {
@@ -109,13 +113,13 @@ class Item implements TaggableInterface
      * Set the title
      *
      * @param  string $title
-     * @throws \Laminas\Tag\Exception\InvalidArgumentException When title is no string
-     * @return \Laminas\Tag\Item
+     * @throws InvalidArgumentException When title is no string.
+     * @return Item
      */
     public function setTitle($title)
     {
         if (! is_string($title)) {
-            throw new Exception\InvalidArgumentException('Title must be a string');
+            throw new InvalidArgumentException('Title must be a string');
         }
 
         $this->title = (string) $title;
@@ -136,13 +140,13 @@ class Item implements TaggableInterface
      * Set the weight
      *
      * @param  float $weight
-     * @throws \Laminas\Tag\Exception\InvalidArgumentException When weight is not numeric
-     * @return \Laminas\Tag\Item
+     * @throws InvalidArgumentException When weight is not numeric.
+     * @return Item
      */
     public function setWeight($weight)
     {
         if (! is_numeric($weight)) {
-            throw new Exception\InvalidArgumentException('Weight must be numeric');
+            throw new InvalidArgumentException('Weight must be numeric');
         }
 
         $this->weight = (float) $weight;
@@ -153,7 +157,7 @@ class Item implements TaggableInterface
      * Set multiple params at once
      *
      * @param  array $params
-     * @return \Laminas\Tag\Item
+     * @return Item
      */
     public function setParams(array $params)
     {
@@ -169,7 +173,7 @@ class Item implements TaggableInterface
      *
      * @param  string $name
      * @param  mixed  $value
-     * @return \Laminas\Tag\Item
+     * @return Item
      */
     public function setParam($name, $value)
     {
@@ -188,6 +192,6 @@ class Item implements TaggableInterface
         if (isset($this->params[$name])) {
             return $this->params[$name];
         }
-        return;
+        return null;
     }
 }

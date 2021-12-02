@@ -1,10 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-tag for the canonical source repository
- * @copyright https://github.com/laminas/laminas-tag/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-tag/blob/master/LICENSE.md New BSD License
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Tag\Cloud;
 
@@ -12,9 +8,11 @@ use ArrayObject;
 use Laminas\ServiceManager\Config as SMConfig;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\Tag;
+use Laminas\Tag\Cloud;
 use Laminas\Tag\Cloud\Decorator\HtmlCloud;
 use Laminas\Tag\Cloud\Decorator\HtmlTag;
 use Laminas\Tag\Cloud\DecoratorPluginManager;
+use Laminas\Tag\Exception\InvalidArgumentException;
 use Laminas\Tag\ItemList;
 use LaminasTest\Tag\Cloud\TestAsset\CloudDummy;
 use LaminasTest\Tag\Cloud\TestAsset\TagDummy;
@@ -49,7 +47,7 @@ class CloudTest extends TestCase
         $cloud = $this->getCloud();
         $this->assertInstanceOf(HtmlCloud::class, $cloud->getCloudDecorator());
 
-        $cloud->setCloudDecorator(new TestAsset\CloudDummy());
+        $cloud->setCloudDecorator(new CloudDummy());
         $this->assertInstanceOf(CloudDummy::class, $cloud->getCloudDecorator());
     }
 
@@ -57,7 +55,7 @@ class CloudTest extends TestCase
     {
         $cloud = $this->getCloud();
 
-        $this->expectException('Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('DecoratorInterface');
         $cloud->setCloudDecorator(new stdClass());
     }
@@ -70,7 +68,7 @@ class CloudTest extends TestCase
             'options'   => ['foo' => 'bar'],
         ]);
 
-        $this->assertInstanceOf('LaminasTest\Tag\Cloud\TestAsset\TagDummy', $cloud->getTagDecorator());
+        $this->assertInstanceOf(TagDummy::class, $cloud->getTagDecorator());
         $this->assertEquals('bar', $cloud->getTagDecorator()->getFoo());
     }
 
@@ -79,7 +77,7 @@ class CloudTest extends TestCase
         $cloud = $this->getCloud();
         $this->assertInstanceOf(HtmlTag::class, $cloud->getTagDecorator());
 
-        $cloud->setTagDecorator(new TestAsset\TagDummy());
+        $cloud->setTagDecorator(new TagDummy());
         $this->assertInstanceOf(TagDummy::class, $cloud->getTagDecorator());
     }
 
@@ -87,7 +85,7 @@ class CloudTest extends TestCase
     {
         $cloud = $this->getCloud();
 
-        $this->expectException('Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('DecoratorInterface');
         $cloud->setTagDecorator(new stdClass());
     }
@@ -96,7 +94,7 @@ class CloudTest extends TestCase
     {
         $decorators = new DecoratorPluginManager(new ServiceManager());
 
-        $cloud = $this->getCloud([], null);
+        $cloud = $this->getCloud([], false);
         $cloud->setDecoratorPluginManager($decorators);
 
         $this->assertSame($decorators, $cloud->getDecoratorPluginManager());
@@ -105,7 +103,7 @@ class CloudTest extends TestCase
     public function testSetDecoratorPluginManagerViaOptions()
     {
         $decorators = new DecoratorPluginManager(new ServiceManager());
-        $cloud      = $this->getCloud(['decoratorPluginManager' => $decorators], null);
+        $cloud      = $this->getCloud(['decoratorPluginManager' => $decorators], false);
 
         $this->assertSame($decorators, $cloud->getDecoratorPluginManager());
     }
@@ -140,7 +138,7 @@ class CloudTest extends TestCase
     {
         $cloud = $this->getCloud();
 
-        $this->expectException('Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('TaggableInterface');
         $cloud->appendTag('foo');
     }
@@ -158,7 +156,7 @@ class CloudTest extends TestCase
             [
                 'title'  => 'bar',
                 'weight' => 2,
-            ]
+            ],
         ]);
 
         $this->assertEquals('foo', $list[0]->getTitle());
@@ -209,7 +207,7 @@ class CloudTest extends TestCase
     {
         $cloud = $this->getCloud();
 
-        $this->expectException('Laminas\Tag\Exception\InvalidArgumentException');
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('TaggableInterface');
         $cloud->setTags(['foo']);
     }
@@ -317,10 +315,10 @@ class CloudTest extends TestCase
             . '<li><a href="" style="font-size: 10px;">foo</a></li> '
             . '<li><a href="" style="font-size: 20px;">bar</a></li>'
             . '</ul>';
-        $this->assertEquals($expected, (string)$cloud);
+        $this->assertEquals($expected, (string) $cloud);
     }
 
-    protected function getCloud($options = null, $setDecoratorPluginManager = true)
+    protected function getCloud(?iterable $options = null, bool $setDecoratorPluginManager = true): Cloud
     {
         $cloud = new Tag\Cloud($options);
 
@@ -335,10 +333,10 @@ class CloudTest extends TestCase
             ]);
             */
             $smConfig = new SMConfig([
-              'invokables' => [
-                  'CloudDummy' => CloudDummy::class,
-                  'TagDummy'   => TagDummy::class
-              ]
+                'invokables' => [
+                    'CloudDummy' => CloudDummy::class,
+                    'TagDummy'   => TagDummy::class,
+                ],
             ]);
             $smConfig->configureServiceManager($decorators);
         }
