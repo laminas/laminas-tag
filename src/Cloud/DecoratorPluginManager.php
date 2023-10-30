@@ -11,7 +11,6 @@ use RuntimeException;
 use Zend\Tag\Cloud\Decorator\HtmlCloud;
 use Zend\Tag\Cloud\Decorator\HtmlTag;
 
-use function get_class;
 use function gettype;
 use function is_object;
 use function sprintf;
@@ -76,7 +75,7 @@ class DecoratorPluginManager extends AbstractPluginManager
                 '%s can only create instances of %s; %s is invalid',
                 static::class,
                 $this->instanceOf,
-                is_object($instance) ? get_class($instance) : gettype($instance)
+                is_object($instance) ? $instance::class : gettype($instance)
             ));
         }
     }
