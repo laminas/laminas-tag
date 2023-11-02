@@ -19,7 +19,7 @@ class DecoratorPluginManagerCompatibilityTest extends TestCase
     use CommonPluginManagerTrait;
 
     /** @return DecoratorPluginManager */
-    protected function getPluginManager()
+    protected static function getPluginManager()
     {
         return new DecoratorPluginManager(new ServiceManager());
     }

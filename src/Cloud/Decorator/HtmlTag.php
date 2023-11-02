@@ -9,7 +9,6 @@ use Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException;
 use Laminas\Tag\ItemList;
 
 use function count;
-use function get_class;
 use function gettype;
 use function in_array;
 use function is_array;
@@ -225,7 +224,7 @@ class HtmlTag extends AbstractTag
         if (! $tags instanceof ItemList) {
             throw new InvalidArgumentException(sprintf(
                 'HtmlTag::render() expects a Laminas\Tag\ItemList argument; received "%s"',
-                is_object($tags) ? get_class($tags) : gettype($tags)
+                is_object($tags) ? $tags::class : gettype($tags)
             ));
         }
         if (null === ($weightValues = $this->getClassList())) {

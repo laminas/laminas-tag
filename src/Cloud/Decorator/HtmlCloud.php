@@ -5,7 +5,6 @@ declare(strict_types=1);
 
 namespace Laminas\Tag\Cloud\Decorator;
 
-use function get_class;
 use function gettype;
 use function implode;
 use function is_array;
@@ -89,7 +88,7 @@ class HtmlCloud extends AbstractCloud
         if (! is_array($tags)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 'HtmlCloud::render() expects an array argument; received "%s"',
-                is_object($tags) ? get_class($tags) : gettype($tags)
+                is_object($tags) ? $tags::class : gettype($tags)
             ));
         }
         $cloudHTML = implode($this->getSeparator(), $tags);

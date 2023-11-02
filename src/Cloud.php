@@ -13,7 +13,6 @@ use Laminas\Tag\Exception\InvalidArgumentException;
 use Traversable;
 
 use function count;
-use function get_class;
 use function gettype;
 use function in_array;
 use function is_array;
@@ -144,7 +143,7 @@ class Cloud
             throw new InvalidArgumentException(sprintf(
                 'Tag must be an instance of %s\TaggableInterface or an array; received "%s"',
                 __NAMESPACE__,
-                is_object($tag) ? get_class($tag) : gettype($tag)
+                is_object($tag) ? $tag::class : gettype($tag)
             ));
         }
 
