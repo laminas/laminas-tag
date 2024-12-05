@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
+  <file src="src/Cloud.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[$this->decorators === null]]></code>
+      <code><![CDATA[is_array($tag)]]></code>
+      <code><![CDATA[null === $this->cloudDecorator]]></code>
+      <code><![CDATA[null === $this->tagDecorator]]></code>
+      <code><![CDATA[null === $this->tags]]></code>
+    </DocblockTypeContradiction>
+    <MixedArgument>
+      <code><![CDATA[$options]]></code>
+      <code><![CDATA[$options]]></code>
+      <code><![CDATA[is_object($tag) ? $tag::class : gettype($tag)]]></code>
+    </MixedArgument>
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$key]]></code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment>
+      <code><![CDATA[$decorator]]></code>
+      <code><![CDATA[$decorator]]></code>
+      <code><![CDATA[$decorator]]></code>
+      <code><![CDATA[$decorator]]></code>
+      <code><![CDATA[$options]]></code>
+      <code><![CDATA[$options]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[$cloudDecorator]]></code>
+      <code><![CDATA[$decorators]]></code>
+      <code><![CDATA[$tagDecorator]]></code>
+      <code><![CDATA[$tags]]></code>
+    </PropertyNotSetInConstructor>
+    <RedundantCondition>
+      <code><![CDATA[gettype($tag)]]></code>
+    </RedundantCondition>
+    <TypeDoesNotContainType>
+      <code><![CDATA[is_object($tag)]]></code>
+    </TypeDoesNotContainType>
+  </file>
+  <file src="src/Cloud/Decorator/AbstractDecorator.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[null === $this->escaper]]></code>
+    </DocblockTypeContradiction>
+    <InvalidClass>
+      <code><![CDATA[HTMLCloud]]></code>
+    </InvalidClass>
+    <LessSpecificReturnStatement>
+      <code><![CDATA[$this]]></code>
+      <code><![CDATA[$this]]></code>
+      <code><![CDATA[$this]]></code>
+    </LessSpecificReturnStatement>
+    <MissingReturnType>
+      <code><![CDATA[validateAttributeName]]></code>
+      <code><![CDATA[validateElementName]]></code>
+    </MissingReturnType>
+    <MixedArgument>
+      <code><![CDATA[$htmlTag]]></code>
+      <code><![CDATA[$htmlTag]]></code>
+      <code><![CDATA[$htmlTag]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedArgument>
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$key]]></code>
+      <code><![CDATA[$param]]></code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment>
+      <code><![CDATA[$data]]></code>
+      <code><![CDATA[$htmlTag]]></code>
+      <code><![CDATA[$htmlTag]]></code>
+      <code><![CDATA[$key]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$options]]></code>
+    </MoreSpecificImplementedParamType>
+    <MoreSpecificReturnType>
+      <code><![CDATA[AbstractTag]]></code>
+      <code><![CDATA[HTMLCloud]]></code>
+      <code><![CDATA[HtmlCloud]]></code>
+    </MoreSpecificReturnType>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[setEncoding]]></code>
+    </PossiblyUnusedMethod>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[$escaper]]></code>
+    </PropertyNotSetInConstructor>
+    <RedundantCastGivenDocblockType>
+      <code><![CDATA[(string) $value]]></code>
+    </RedundantCastGivenDocblockType>
+    <UndefinedMethod>
+      <code><![CDATA[getHTMLTags]]></code>
+    </UndefinedMethod>
+  </file>
+  <file src="src/Cloud/Decorator/HtmlCloud.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_array($tags)]]></code>
+    </DocblockTypeContradiction>
+    <MixedArgument>
+      <code><![CDATA[is_object($tags) ? $tags::class : gettype($tags)]]></code>
+    </MixedArgument>
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$tags]]></code>
+    </MixedArgumentTypeCoercion>
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$tags]]></code>
+    </MoreSpecificImplementedParamType>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getHTMLTags]]></code>
+    </PossiblyUnusedMethod>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[HtmlCloud]]></code>
+    </PropertyNotSetInConstructor>
+    <RedundantCondition>
+      <code><![CDATA[gettype($tags)]]></code>
+    </RedundantCondition>
+    <TypeDoesNotContainType>
+      <code><![CDATA[is_object($tags)]]></code>
+    </TypeDoesNotContainType>
+  </file>
+  <file src="src/Cloud/Decorator/HtmlTag.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA['']]></code>
+      <code><![CDATA[gettype($tags)]]></code>
+      <code><![CDATA[is_numeric($maxFontSize)]]></code>
+      <code><![CDATA[is_numeric($minFontSize)]]></code>
+      <code><![CDATA[null === ($classList = $this->getClassList())]]></code>
+      <code><![CDATA[null === ($weightValues = $this->getClassList())]]></code>
+    </DocblockTypeContradiction>
+    <ImplementedReturnTypeMismatch>
+      <code><![CDATA[array]]></code>
+    </ImplementedReturnTypeMismatch>
+    <InvalidArgument>
+      <code><![CDATA['weightValue']]></code>
+    </InvalidArgument>
+    <MixedArgument>
+      <code><![CDATA[$tag->getParam('url') ?? '']]></code>
+      <code><![CDATA[$tag->getParam('weightValue' ?? '')]]></code>
+      <code><![CDATA[$tag->getParam('weightValue')]]></code>
+    </MixedArgument>
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$tags]]></code>
+    </MoreSpecificImplementedParamType>
+    <PossiblyFalseReference>
+      <code><![CDATA[getParam]]></code>
+      <code><![CDATA[getParam]]></code>
+    </PossiblyFalseReference>
+    <PossiblyNullPropertyAssignmentValue>
+      <code><![CDATA[$classList]]></code>
+    </PossiblyNullPropertyAssignmentValue>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getHTMLTags]]></code>
+    </PossiblyUnusedMethod>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[$classList]]></code>
+      <code><![CDATA[HtmlTag]]></code>
+    </PropertyNotSetInConstructor>
+    <RedundantCastGivenDocblockType>
+      <code><![CDATA[(int) $maxFontSize]]></code>
+      <code><![CDATA[(int) $minFontSize]]></code>
+      <code><![CDATA[(string) $fontSizeUnit]]></code>
+    </RedundantCastGivenDocblockType>
+    <RedundantConditionGivenDocblockType>
+      <code><![CDATA[$tag->getTitle()]]></code>
+      <code><![CDATA[is_object($tags)]]></code>
+    </RedundantConditionGivenDocblockType>
+  </file>
+  <file src="src/Cloud/DecoratorPluginManager.php">
+    <MissingReturnType>
+      <code><![CDATA[validatePlugin]]></code>
+    </MissingReturnType>
+    <MissingTemplateParam>
+      <code><![CDATA[DecoratorPluginManager]]></code>
+    </MissingTemplateParam>
+    <MixedPropertyTypeCoercion>
+      <code><![CDATA[[
+        'htmlcloud' => Decorator\HtmlCloud::class,
+        'htmlCloud' => Decorator\HtmlCloud::class,
+        'Htmlcloud' => Decorator\HtmlCloud::class,
+        'HtmlCloud' => Decorator\HtmlCloud::class,
+        'htmltag'   => Decorator\HtmlTag::class,
+        'htmlTag'   => Decorator\HtmlTag::class,
+        'Htmltag'   => Decorator\HtmlTag::class,
+        'HtmlTag'   => Decorator\HtmlTag::class,
+        'tag'       => Decorator\HtmlTag::class,
+        'Tag'       => Decorator\HtmlTag::class,
+
+        // Legacy Zend Framework aliases
+        HtmlCloud::class => Decorator\HtmlCloud::class,
+        HtmlTag::class   => Decorator\HtmlTag::class,
+
+        // v2 normalized FQCNs
+        'zendtagclouddecoratorhtmlcloud' => Decorator\HtmlCloud::class,
+        'zendtagclouddecoratorhtmltag'   => Decorator\HtmlTag::class,
+    ]]]></code>
+    </MixedPropertyTypeCoercion>
+    <NonInvariantDocblockPropertyType>
+      <code><![CDATA[$aliases]]></code>
+      <code><![CDATA[$factories]]></code>
+      <code><![CDATA[$instanceOf]]></code>
+    </NonInvariantDocblockPropertyType>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[validatePlugin]]></code>
+    </PossiblyUnusedMethod>
+    <UndefinedClass>
+      <code><![CDATA[HtmlCloud]]></code>
+      <code><![CDATA[HtmlTag]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="src/Item.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[$this->title === null]]></code>
+      <code><![CDATA[$this->weight === null]]></code>
+      <code><![CDATA[is_array($options)]]></code>
+      <code><![CDATA[is_numeric($weight)]]></code>
+      <code><![CDATA[is_string($title)]]></code>
+    </DocblockTypeContradiction>
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$options]]></code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[setParams]]></code>
+    </PossiblyUnusedMethod>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[$title]]></code>
+      <code><![CDATA[$weight]]></code>
+    </PropertyNotSetInConstructor>
+    <UninitializedProperty>
+      <code><![CDATA[$this->title]]></code>
+      <code><![CDATA[$this->weight]]></code>
+    </UninitializedProperty>
+  </file>
+  <file src="src/ItemList.php">
+    <ImplementedReturnTypeMismatch>
+      <code><![CDATA[TaggableInterface|false]]></code>
+      <code><![CDATA[TaggableInterface|false]]></code>
+    </ImplementedReturnTypeMismatch>
+    <MixedArgument>
+      <code><![CDATA[$values[$i]]]></code>
+      <code><![CDATA[$values[0]]]></code>
+    </MixedArgument>
+    <ParamNameMismatch>
+      <code><![CDATA[$index]]></code>
+    </ParamNameMismatch>
+    <PossiblyNullOperand>
+      <code><![CDATA[$maxWeight]]></code>
+      <code><![CDATA[$minWeight]]></code>
+      <code><![CDATA[$minWeight]]></code>
+    </PossiblyNullOperand>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[count]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[TaggableInterface|false]]></code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="src/TaggableInterface.php">
+    <MissingReturnType>
+      <code><![CDATA[setParam]]></code>
+    </MissingReturnType>
+  </file>
+  <file src="test/Cloud/CloudTest.php">
+    <DeprecatedClass>
+      <code><![CDATA[new SMConfig([
+                'invokables' => [
+                    'CloudDummy' => CloudDummy::class,
+                    'TagDummy'   => TagDummy::class,
+                ],
+            ])]]></code>
+    </DeprecatedClass>
+    <UndefinedMethod>
+      <code><![CDATA[getFoo]]></code>
+      <code><![CDATA[getFoo]]></code>
+    </UndefinedMethod>
+  </file>
+  <file src="test/Cloud/Decorator/HtmlCloudTest.php">
+    <MixedInferredReturnType>
+      <code><![CDATA[array<array-key, array{0: array<string, map>}>]]></code>
+    </MixedInferredReturnType>
+    <UndefinedDocblockClass>
+      <code><![CDATA[array<array-key, array{0: array<string, map>}>]]></code>
+    </UndefinedDocblockClass>
+    <UnusedVariable>
+      <code><![CDATA[$decorator]]></code>
+    </UnusedVariable>
+  </file>
+  <file src="test/Cloud/Decorator/HtmlTagTest.php">
+    <InvalidArgument>
+      <code><![CDATA['foo']]></code>
+      <code><![CDATA['foo']]></code>
+    </InvalidArgument>
+    <MixedInferredReturnType>
+      <code><![CDATA[array<array-key, array{0: array<string, map>}>]]></code>
+    </MixedInferredReturnType>
+    <UndefinedDocblockClass>
+      <code><![CDATA[array<array-key, array{0: array<string, map>}>]]></code>
+    </UndefinedDocblockClass>
+    <UnusedVariable>
+      <code><![CDATA[$decorator]]></code>
+    </UnusedVariable>
+  </file>
+  <file src="test/Cloud/TestAsset/CloudDummy.php">
+    <MissingPropertyType>
+      <code><![CDATA[$_foo]]></code>
+    </MissingPropertyType>
+    <MissingReturnType>
+      <code><![CDATA[setFoo]]></code>
+    </MissingReturnType>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getFoo]]></code>
+      <code><![CDATA[setFoo]]></code>
+    </PossiblyUnusedMethod>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[CloudDummy]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="test/Cloud/TestAsset/CloudDummy1.php">
+    <MissingPropertyType>
+      <code><![CDATA[$_foo]]></code>
+    </MissingPropertyType>
+    <MissingReturnType>
+      <code><![CDATA[setFoo]]></code>
+    </MissingReturnType>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[CloudDummy1]]></code>
+    </PropertyNotSetInConstructor>
+    <UnusedClass>
+      <code><![CDATA[CloudDummy1]]></code>
+    </UnusedClass>
+  </file>
+  <file src="test/Cloud/TestAsset/CloudDummy2.php">
+    <MissingPropertyType>
+      <code><![CDATA[$_foo]]></code>
+    </MissingPropertyType>
+    <MissingReturnType>
+      <code><![CDATA[setFoo]]></code>
+    </MissingReturnType>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[CloudDummy2]]></code>
+    </PropertyNotSetInConstructor>
+    <UnusedClass>
+      <code><![CDATA[CloudDummy2]]></code>
+    </UnusedClass>
+  </file>
+  <file src="test/Cloud/TestAsset/TagDummy.php">
+    <MissingPropertyType>
+      <code><![CDATA[$_foo]]></code>
+    </MissingPropertyType>
+    <MissingReturnType>
+      <code><![CDATA[setFoo]]></code>
+    </MissingReturnType>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getFoo]]></code>
+      <code><![CDATA[setFoo]]></code>
+    </PossiblyUnusedMethod>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[TagDummy]]></code>
+      <code><![CDATA[TagDummy]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="test/ItemListTest.php">
+    <MixedAssignment>
+      <code><![CDATA[$weightValues[]]]></code>
+      <code><![CDATA[$weightValues[]]]></code>
+    </MixedAssignment>
+    <PossiblyFalseReference>
+      <code><![CDATA[getParam]]></code>
+      <code><![CDATA[getParam]]></code>
+      <code><![CDATA[getTitle]]></code>
+      <code><![CDATA[getTitle]]></code>
+    </PossiblyFalseReference>
+  </file>
+</files>

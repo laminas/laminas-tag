@@ -15,6 +15,14 @@ use function is_string;
 use function method_exists;
 use function strtolower;
 
+/**
+ * @psalm-type TagShape = array{
+ *      title: string,
+ *      weight: numeric,
+ *      url?: string,
+ *      ...<string, mixed>,
+ *  }
+ */
 class Item implements TaggableInterface
 {
     /**
@@ -34,14 +42,14 @@ class Item implements TaggableInterface
     /**
      * Custom parameters
      *
-     * @var string
+     * @var array<string, mixed>
      */
     protected $params = [];
 
     /**
      * Option keys to skip when calling setOptions()
      *
-     * @var array
+     * @var list<string>
      */
     protected $skipOptions = [
         'options',
@@ -51,7 +59,7 @@ class Item implements TaggableInterface
     /**
      * Create a new tag according to the options
      *
-     * @param  array|Traversable $options
+     * @param  TagShape|Traversable $options
      * @throws InvalidArgumentException When invalid options are provided.
      * @throws InvalidArgumentException When title was not set.
      * @throws InvalidArgumentException When weight was not set.
@@ -80,7 +88,7 @@ class Item implements TaggableInterface
     /**
      * Set options of the tag
      *
-     * @param  array $options
+     * @param TagShape $options
      * @return Item
      */
     public function setOptions(array $options)
@@ -122,7 +130,7 @@ class Item implements TaggableInterface
             throw new InvalidArgumentException('Title must be a string');
         }
 
-        $this->title = (string) $title;
+        $this->title = $title;
         return $this;
     }
 
@@ -139,7 +147,7 @@ class Item implements TaggableInterface
     /**
      * Set the weight
      *
-     * @param  float $weight
+     * @param  numeric $weight
      * @throws InvalidArgumentException When weight is not numeric.
      * @return Item
      */
@@ -156,7 +164,7 @@ class Item implements TaggableInterface
     /**
      * Set multiple params at once
      *
-     * @param  array $params
+     * @param array<string, mixed> $params
      * @return Item
      */
     public function setParams(array $params)

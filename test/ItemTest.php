@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class ItemTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $tag = new Tag\Item([
             'title'  => 'foo',
@@ -26,7 +26,7 @@ class ItemTest extends TestCase
         $this->assertEquals('baz', $tag->getParam('bar'));
     }
 
-    public function testSetOptions()
+    public function testSetOptions(): void
     {
         $tag = new Tag\Item(['title' => 'foo', 'weight' => 1]);
         $tag->setOptions([
@@ -42,7 +42,7 @@ class ItemTest extends TestCase
         $this->assertEquals('baz', $tag->getParam('bar'));
     }
 
-    public function testSetParam()
+    public function testSetParam(): void
     {
         $tag = new Tag\Item(['title' => 'foo', 'weight' => 1]);
         $tag->setParam('bar', 'baz');
@@ -50,7 +50,7 @@ class ItemTest extends TestCase
         $this->assertEquals('baz', $tag->getParam('bar'));
     }
 
-    public function testSetTitle()
+    public function testSetTitle(): void
     {
         $tag = new Tag\Item(['title' => 'foo', 'weight' => 1]);
         $tag->setTitle('baz');
@@ -58,14 +58,15 @@ class ItemTest extends TestCase
         $this->assertEquals('baz', $tag->getTitle());
     }
 
-    public function testInvalidTitle()
+    public function testInvalidTitle(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Title must be a string');
-        $tag = new Tag\Item(['title' => 10, 'weight' => 1]);
+        /** @psalm-suppress InvalidArgument */
+        new Tag\Item(['title' => 10, 'weight' => 1]);
     }
 
-    public function testSetWeight()
+    public function testSetWeight(): void
     {
         $tag = new Tag\Item(['title' => 'foo', 'weight' => 1]);
         $tag->setWeight('10');
@@ -74,38 +75,42 @@ class ItemTest extends TestCase
         $this->assertIsFloat($tag->getWeight());
     }
 
-    public function testInvalidWeight()
+    public function testInvalidWeight(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Weight must be numeric');
-        $tag = new Tag\Item(['title' => 'foo', 'weight' => 'foobar']);
+        /** @psalm-suppress InvalidArgument */
+        new Tag\Item(['title' => 'foo', 'weight' => 'foobar']);
     }
 
-    public function testSkipOptions()
+    public function testSkipOptions(): void
     {
-        $tag = new Tag\Item(['title' => 'foo', 'weight' => 1, 'param' => 'foobar']);
+        new Tag\Item(['title' => 'foo', 'weight' => 1, 'param' => 'foobar']);
         // In case would fail due to an error
     }
 
-    public function testInvalidOptions()
+    public function testInvalidOptions(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid options provided to constructor');
-        $tag = new Tag\Item('test');
+        /** @psalm-suppress InvalidArgument */
+        new Tag\Item('test');
     }
 
-    public function testMissingTitle()
+    public function testMissingTitle(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Title was not set');
-        $tag = new Tag\Item(['weight' => 1]);
+        /** @psalm-suppress InvalidArgument */
+        new Tag\Item(['weight' => 1]);
     }
 
-    public function testMissingWeight()
+    public function testMissingWeight(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Weight was not set');
-        $tag = new Tag\Item(['title' => 'foo']);
+        /** @psalm-suppress InvalidArgument */
+        new Tag\Item(['title' => 'foo']);
     }
 
     /**
@@ -113,15 +118,15 @@ class ItemTest extends TestCase
      * same behavior as Laminas\Config\Config; the code is looking only
      * for a Traversable.
      */
-    public function testConfigOptions()
+    public function testConfigOptions(): void
     {
         $tag = new Tag\Item(new ArrayObject(['title' => 'foo', 'weight' => 1]));
 
-        $this->assertEquals($tag->getTitle(), 'foo');
-        $this->assertEquals($tag->getWeight(), 1);
+        $this->assertEquals('foo', $tag->getTitle());
+        $this->assertEquals(1, $tag->getWeight());
     }
 
-    public function testGetNonSetParam()
+    public function testGetNonSetParam(): void
     {
         $tag = new Tag\Item(['title' => 'foo', 'weight' => 1]);
 

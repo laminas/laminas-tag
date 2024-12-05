@@ -21,7 +21,7 @@ use stdClass;
 
 class CloudTest extends TestCase
 {
-    public function testGetAndSetItemList()
+    public function testGetAndSetItemList(): void
     {
         $cloud = $this->getCloud();
         $this->assertInstanceOf(ItemList::class, $cloud->getItemList());
@@ -30,7 +30,7 @@ class CloudTest extends TestCase
         $this->assertInstanceOf(TestAsset\ItemListDummy::class, $cloud->getItemList());
     }
 
-    public function testSetCloudDecoratorViaArray()
+    public function testSetCloudDecoratorViaArray(): void
     {
         $cloud = $this->getCloud();
         $cloud->setCloudDecorator([
@@ -42,7 +42,7 @@ class CloudTest extends TestCase
         $this->assertEquals('bar', $cloud->getCloudDecorator()->getFoo());
     }
 
-    public function testGetAndSetCloudDecorator()
+    public function testGetAndSetCloudDecorator(): void
     {
         $cloud = $this->getCloud();
         $this->assertInstanceOf(HtmlCloud::class, $cloud->getCloudDecorator());
@@ -51,7 +51,7 @@ class CloudTest extends TestCase
         $this->assertInstanceOf(CloudDummy::class, $cloud->getCloudDecorator());
     }
 
-    public function testSetInvalidCloudDecorator()
+    public function testSetInvalidCloudDecorator(): void
     {
         $cloud = $this->getCloud();
 
@@ -60,7 +60,7 @@ class CloudTest extends TestCase
         $cloud->setCloudDecorator(new stdClass());
     }
 
-    public function testSetTagDecoratorViaArray()
+    public function testSetTagDecoratorViaArray(): void
     {
         $cloud = $this->getCloud();
         $cloud->setTagDecorator([
@@ -72,7 +72,7 @@ class CloudTest extends TestCase
         $this->assertEquals('bar', $cloud->getTagDecorator()->getFoo());
     }
 
-    public function testGetAndSetTagDecorator()
+    public function testGetAndSetTagDecorator(): void
     {
         $cloud = $this->getCloud();
         $this->assertInstanceOf(HtmlTag::class, $cloud->getTagDecorator());
@@ -81,7 +81,7 @@ class CloudTest extends TestCase
         $this->assertInstanceOf(TagDummy::class, $cloud->getTagDecorator());
     }
 
-    public function testSetInvalidTagDecorator()
+    public function testSetInvalidTagDecorator(): void
     {
         $cloud = $this->getCloud();
 
@@ -90,7 +90,7 @@ class CloudTest extends TestCase
         $cloud->setTagDecorator(new stdClass());
     }
 
-    public function testSetDecoratorPluginManager()
+    public function testSetDecoratorPluginManager(): void
     {
         $decorators = new DecoratorPluginManager(new ServiceManager());
 
@@ -100,7 +100,7 @@ class CloudTest extends TestCase
         $this->assertSame($decorators, $cloud->getDecoratorPluginManager());
     }
 
-    public function testSetDecoratorPluginManagerViaOptions()
+    public function testSetDecoratorPluginManagerViaOptions(): void
     {
         $decorators = new DecoratorPluginManager(new ServiceManager());
         $cloud      = $this->getCloud(['decoratorPluginManager' => $decorators], false);
@@ -108,7 +108,7 @@ class CloudTest extends TestCase
         $this->assertSame($decorators, $cloud->getDecoratorPluginManager());
     }
 
-    public function testAppendTagAsArray()
+    public function testAppendTagAsArray(): void
     {
         $cloud = $this->getCloud();
         $list  = $cloud->getItemList();
@@ -121,7 +121,7 @@ class CloudTest extends TestCase
         $this->assertEquals('foo', $list[0]->getTitle());
     }
 
-    public function testAppendTagAsItem()
+    public function testAppendTagAsItem(): void
     {
         $cloud = $this->getCloud();
         $list  = $cloud->getItemList();
@@ -134,16 +134,17 @@ class CloudTest extends TestCase
         $this->assertEquals('foo', $list[0]->getTitle());
     }
 
-    public function testAppendInvalidTag()
+    public function testAppendInvalidTag(): void
     {
         $cloud = $this->getCloud();
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('TaggableInterface');
+        /** @psalm-suppress InvalidArgument */
         $cloud->appendTag('foo');
     }
 
-    public function testSetTagsAsArray()
+    public function testSetTagsAsArray(): void
     {
         $cloud = $this->getCloud();
         $list  = $cloud->getItemList();
@@ -163,7 +164,7 @@ class CloudTest extends TestCase
         $this->assertEquals('bar', $list[1]->getTitle());
     }
 
-    public function testSetTagsAsItem()
+    public function testSetTagsAsItem(): void
     {
         $cloud = $this->getCloud();
         $list  = $cloud->getItemList();
@@ -183,7 +184,7 @@ class CloudTest extends TestCase
         $this->assertEquals('bar', $list[1]->getTitle());
     }
 
-    public function testSetTagsMixed()
+    public function testSetTagsMixed(): void
     {
         $cloud = $this->getCloud();
         $list  = $cloud->getItemList();
@@ -203,16 +204,17 @@ class CloudTest extends TestCase
         $this->assertEquals('bar', $list[1]->getTitle());
     }
 
-    public function testSetInvalidTags()
+    public function testSetInvalidTags(): void
     {
         $cloud = $this->getCloud();
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('TaggableInterface');
+        /** @psalm-suppress InvalidArgument */
         $cloud->setTags(['foo']);
     }
 
-    public function testConstructorWithArray()
+    public function testConstructorWithArray(): void
     {
         $cloud = $this->getCloud([
             'tags' => [
@@ -232,7 +234,7 @@ class CloudTest extends TestCase
      * same behavior as Laminas\Config\Config; the code is looking only
      * for a Traversable.
      */
-    public function testConstructorWithConfig()
+    public function testConstructorWithConfig(): void
     {
         $cloud = $this->getCloud(new ArrayObject([
             'tags' => [
@@ -247,7 +249,7 @@ class CloudTest extends TestCase
         $this->assertEquals('foo', $list[0]->getTitle());
     }
 
-    public function testSetOptions()
+    public function testSetOptions(): void
     {
         $cloud = $this->getCloud();
         $cloud->setOptions([
@@ -263,12 +265,12 @@ class CloudTest extends TestCase
         $this->assertEquals('foo', $list[0]->getTitle());
     }
 
-    public function testSkipOptions()
+    public function testSkipOptions(): void
     {
         $this->getCloud(['options' => 'foobar']);
     }
 
-    public function testRender()
+    public function testRender(): void
     {
         $cloud = $this->getCloud([
             'tags' => [
@@ -291,13 +293,13 @@ class CloudTest extends TestCase
         $this->assertEquals($expected, $cloud->render());
     }
 
-    public function testRenderEmptyCloud()
+    public function testRenderEmptyCloud(): void
     {
         $cloud = $this->getCloud();
         $this->assertEquals('', $cloud->render());
     }
 
-    public function testRenderViaToString()
+    public function testRenderViaToString(): void
     {
         $cloud    = $this->getCloud([
             'tags' => [

@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class HtmlCloudTest extends TestCase
 {
-    public function testDefaultOutput()
+    public function testDefaultOutput(): void
     {
         $decorator = new Decorator\HtmlCloud();
 
@@ -27,7 +27,7 @@ class HtmlCloudTest extends TestCase
         );
     }
 
-    public function testNestedTags()
+    public function testNestedTags(): void
     {
         $decorator = new Decorator\HtmlCloud();
         $decorator->setHtmlTags(
@@ -48,7 +48,7 @@ class HtmlCloudTest extends TestCase
         );
     }
 
-    public function testSeparator()
+    public function testSeparator(): void
     {
         $decorator = new Decorator\HtmlCloud();
         $decorator->setSeparator('-');
@@ -64,7 +64,7 @@ class HtmlCloudTest extends TestCase
         );
     }
 
-    public function testConstructorWithArray()
+    public function testConstructorWithArray(): void
     {
         $decorator = new Decorator\HtmlCloud([
             'htmlTags'  => ['div'],
@@ -85,7 +85,7 @@ class HtmlCloudTest extends TestCase
      * same behavior as Laminas\Config\Config; the code is looking only
      * for a Traversable.
      */
-    public function testConstructorWithConfig()
+    public function testConstructorWithConfig(): void
     {
         $decorator = new Decorator\HtmlCloud(new ArrayObject([
             'htmlTags'  => ['div'],
@@ -101,7 +101,7 @@ class HtmlCloudTest extends TestCase
         );
     }
 
-    public function testSetOptions()
+    public function testSetOptions(): void
     {
         $decorator = new Decorator\HtmlCloud();
         $decorator->setOptions([
@@ -118,7 +118,7 @@ class HtmlCloudTest extends TestCase
         );
     }
 
-    public function testSkipOptions()
+    public function testSkipOptions(): void
     {
         $decorator = new Decorator\HtmlCloud(['options' => 'foobar']);
         // In case would fail due to an error
@@ -143,7 +143,7 @@ class HtmlCloudTest extends TestCase
     /**
      * @dataProvider invalidHtmlTagProvider
      */
-    public function testInvalidHtmlTagsRaiseAnException(array $tags)
+    public function testInvalidHtmlTagsRaiseAnException(array $tags): void
     {
         $decorator = new Decorator\HtmlCloud();
         $decorator->setHTMLTags($tags);
@@ -182,7 +182,7 @@ class HtmlCloudTest extends TestCase
     /**
      * @dataProvider invalidAttributeProvider
      */
-    public function testInvalidAttributeNamesRaiseAnException(array $tags)
+    public function testInvalidAttributeNamesRaiseAnException(array $tags): void
     {
         $decorator = new Decorator\HtmlCloud();
         $decorator->setHTMLTags($tags);

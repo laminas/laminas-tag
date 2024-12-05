@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class HtmlTagTest extends TestCase
 {
-    public function testDefaultOutput()
+    public function testDefaultOutput(): void
     {
         $decorator = new Decorator\HtmlTag();
         $expected  = [
@@ -26,7 +26,7 @@ class HtmlTagTest extends TestCase
         $this->assertEquals($decorator->render($this->_getTagList()), $expected);
     }
 
-    public function testNestedTags()
+    public function testNestedTags(): void
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHtmlTags(['span' => ['class' => 'tag'], 'li']);
@@ -39,7 +39,7 @@ class HtmlTagTest extends TestCase
         $this->assertEquals($decorator->render($this->_getTagList()), $expected);
     }
 
-    public function testFontSizeSpread()
+    public function testFontSizeSpread(): void
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setFontSizeUnit('pt')
@@ -55,7 +55,7 @@ class HtmlTagTest extends TestCase
         $this->assertEquals($decorator->render($this->_getTagList()), $expected);
     }
 
-    public function testClassListSpread()
+    public function testClassListSpread(): void
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setClassList(['small', 'medium', 'large']);
@@ -69,7 +69,7 @@ class HtmlTagTest extends TestCase
         $this->assertEquals($decorator->render($this->_getTagList()), $expected);
     }
 
-    public function testEmptyClassList()
+    public function testEmptyClassList(): void
     {
         $decorator = new Decorator\HtmlTag();
 
@@ -78,7 +78,7 @@ class HtmlTagTest extends TestCase
         $decorator->setClassList([]);
     }
 
-    public function testInvalidClassList()
+    public function testInvalidClassList(): void
     {
         $decorator = new Decorator\HtmlTag();
 
@@ -87,7 +87,7 @@ class HtmlTagTest extends TestCase
         $decorator->setClassList([[]]);
     }
 
-    public function testInvalidFontSizeUnit()
+    public function testInvalidFontSizeUnit(): void
     {
         $decorator = new Decorator\HtmlTag();
 
@@ -96,7 +96,7 @@ class HtmlTagTest extends TestCase
         $decorator->setFontSizeUnit('foo');
     }
 
-    public function testInvalidMinFontSize()
+    public function testInvalidMinFontSize(): void
     {
         $decorator = new Decorator\HtmlTag();
 
@@ -105,7 +105,7 @@ class HtmlTagTest extends TestCase
         $decorator->setMinFontSize('foo');
     }
 
-    public function testInvalidMaxFontSize()
+    public function testInvalidMaxFontSize(): void
     {
         $decorator = new Decorator\HtmlTag();
 
@@ -114,7 +114,7 @@ class HtmlTagTest extends TestCase
         $decorator->setMaxFontSize('foo');
     }
 
-    public function testConstructorWithArray()
+    public function testConstructorWithArray(): void
     {
         $decorator = new Decorator\HtmlTag(['minFontSize' => 5, 'maxFontSize' => 10, 'fontSizeUnit' => 'pt']);
 
@@ -128,7 +128,7 @@ class HtmlTagTest extends TestCase
      * same behavior as Laminas\Config\Config; the code is looking only
      * for a Traversable.
      */
-    public function testConstructorWithConfig()
+    public function testConstructorWithConfig(): void
     {
         $decorator = new Decorator\HtmlTag(new ArrayObject([
             'minFontSize'  => 5,
@@ -141,7 +141,7 @@ class HtmlTagTest extends TestCase
         $this->assertEquals('pt', $decorator->getFontSizeUnit());
     }
 
-    public function testSetOptions()
+    public function testSetOptions(): void
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setOptions(['minFontSize' => 5, 'maxFontSize' => 10, 'fontSizeUnit' => 'pt']);
@@ -151,14 +151,14 @@ class HtmlTagTest extends TestCase
         $this->assertEquals('pt', $decorator->getFontSizeUnit());
     }
 
-    public function testSkipOptions()
+    public function testSkipOptions(): void
     {
         $decorator = new Decorator\HtmlTag(['options' => 'foobar']);
         // In case would fail due to an error
     }
 
     // @codingStandardsIgnoreStart
-    protected function _getTagList()
+    protected function _getTagList(): Tag\ItemList
     {
         // @codingStandardsIgnoreEnd
         $list   = new Tag\ItemList();
@@ -201,7 +201,7 @@ class HtmlTagTest extends TestCase
     /**
      * @dataProvider invalidHtmlElementProvider
      */
-    public function testInvalidElementNamesRaiseAnException(array $tags)
+    public function testInvalidElementNamesRaiseAnException(array $tags): void
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHTMLTags($tags);
@@ -240,7 +240,7 @@ class HtmlTagTest extends TestCase
     /**
      * @dataProvider invalidAttributeProvider
      */
-    public function testInvalidAttributesRaiseAnException(array $tags)
+    public function testInvalidAttributesRaiseAnException(array $tags): void
     {
         $decorator = new Decorator\HtmlTag();
         $decorator->setHTMLTags($tags);

@@ -23,12 +23,16 @@ use function min;
 use function next;
 use function reset;
 
+/**
+ * @implements ArrayAccess<int, TaggableInterface>
+ * @implements SeekableIterator<int, TaggableInterface>
+ */
 class ItemList implements Countable, SeekableIterator, ArrayAccess
 {
     /**
      * Items in this list
      *
-     * @var array
+     * @var array<int, TaggableInterface>
      */
     protected $items = [];
 
@@ -46,7 +50,6 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
     /**
      * Spread values in the items relative to their weight
      *
-     * @param  array $values
      * @throws InvalidArgumentException When value list is empty.
      * @return void
      */
@@ -129,7 +132,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
     /**
      * Return the current element
      *
-     * @return mixed
+     * @return TaggableInterface|false
      */
     #[ReturnTypeWillChange]
     public function current()
@@ -140,7 +143,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
     /**
      * Move forward to next element
      *
-     * @return mixed
+     * @return TaggableInterface|false
      */
     #[ReturnTypeWillChange]
     public function next()
@@ -151,7 +154,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
     /**
      * Return the key of the current element
      *
-     * @return mixed
+     * @return int
      */
     #[ReturnTypeWillChange]
     public function key()
@@ -184,7 +187,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
     /**
      * Check if an offset exists
      *
-     * @param  mixed $offset
+     * @param int $offset
      * @return bool
      */
     #[ReturnTypeWillChange]
@@ -196,7 +199,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
     /**
      * Get the value of an offset
      *
-     * @param  mixed $offset
+     * @param int $offset
      * @return TaggableInterface
      */
     #[ReturnTypeWillChange]
@@ -208,31 +211,31 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
     /**
      * Append a new item
      *
-     * @param  mixed          $offset
-     * @param  TaggableInterface $item
-     * @throws OutOfBoundsException When item does not implement Laminas\Tag\TaggableInterface.
+     * @param  int|null $offset
+     * @param  TaggableInterface $value
      * @return void
+     * @throws OutOfBoundsException When item does not implement Laminas\Tag\TaggableInterface.
      */
     #[ReturnTypeWillChange]
-    public function offsetSet($offset, $item)
+    public function offsetSet($offset, $value)
     {
         // We need to make that check here, as the method signature must be
         // compatible with ArrayAccess::offsetSet()
-        if (! $item instanceof TaggableInterface) {
+        if (! $value instanceof TaggableInterface) {
             throw new OutOfBoundsException('Item must implement Laminas\Tag\TaggableInterface');
         }
 
         if ($offset === null) {
-            $this->items[] = $item;
+            $this->items[] = $value;
         } else {
-            $this->items[$offset] = $item;
+            $this->items[$offset] = $value;
         }
     }
 
     /**
      * Unset an item
      *
-     * @param  mixed $offset
+     * @param int $offset
      * @return void
      */
     #[ReturnTypeWillChange]
