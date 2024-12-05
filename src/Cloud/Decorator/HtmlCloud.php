@@ -35,7 +35,6 @@ class HtmlCloud extends AbstractCloud
     /**
      * Set the HTML tags surrounding all tags
      *
-     * @param  array $htmlTags
      * @return HtmlCloud
      */
     public function setHTMLTags(array $htmlTags)

@@ -71,7 +71,6 @@ class HtmlTag extends AbstractTag
     /**
      * Set a list of classes to use instead of fontsizes
      *
-     * @param  array $classList
      * @throws InvalidArgumentException When the classlist is empty.
      * @throws InvalidArgumentException When the classlist contains an invalid classname.
      * @return HtmlTag
@@ -137,7 +136,6 @@ class HtmlTag extends AbstractTag
      /**
       * Set the HTML tags surrounding the <a> element
       *
-      * @param  array $htmlTags
       * @return HtmlTag
       */
     public function setHTMLTags(array $htmlTags)

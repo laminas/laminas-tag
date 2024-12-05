@@ -25,6 +25,10 @@ use function trigger_error;
 
 use const E_USER_WARNING;
 
+/**
+ * @psalm-import-type TagShape from Item
+ * @final
+ */
 class Cloud
 {
     /**
@@ -111,7 +115,7 @@ class Cloud
      * parameter in the array is silently ignored and can be used by custom
      * decorators.
      *
-     * @param  array $tags
+     * @param array<array-key, TagShape|TaggableInterface> $tags
      * @throws InvalidArgumentException
      * @return Cloud
      */
@@ -126,7 +130,7 @@ class Cloud
     /**
      * Append a single tag to the cloud
      *
-     * @param  TaggableInterface|array $tag
+     * @param  TaggableInterface|TagShape $tag
      * @throws InvalidArgumentException
      * @return Cloud
      */
