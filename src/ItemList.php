@@ -159,12 +159,14 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
 
     /**
      * Return the key of the current element
+     *
+     * @return int
      */
     #[Override]
     #[ReturnTypeWillChange]
-    public function key(): int|null
+    public function key()
     {
-        return key($this->items);
+        return (int) key($this->items);
     }
 
     /**
