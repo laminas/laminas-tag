@@ -154,7 +154,7 @@ class HtmlTagTest extends TestCase
     public function testSkipOptions(): void
     {
         $decorator = new Decorator\HtmlTag(['options' => 'foobar']);
-        // In case would fail due to an error
+        $this->assertInstanceOf(Decorator\HtmlTag::class, $decorator);
     }
 
     // @codingStandardsIgnoreStart

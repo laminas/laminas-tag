@@ -267,7 +267,8 @@ class CloudTest extends TestCase
 
     public function testSkipOptions(): void
     {
-        $this->getCloud(['options' => 'foobar']);
+        $cloud = $this->getCloud(['options' => 'foobar']);
+        $this->assertInstanceOf(Cloud::class, $cloud);
     }
 
     public function testRender(): void
