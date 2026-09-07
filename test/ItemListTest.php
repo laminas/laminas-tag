@@ -122,7 +122,6 @@ class ItemListTest extends TestCase
         $list->spreadWeightValues([]);
     }
 
-    /** @param numeric $weight */
     private function generateTagItem(string $title = 'foo', int|float|string $weight = 1): Tag\Item
     {
         return new Tag\Item(['title' => $title, 'weight' => $weight]);

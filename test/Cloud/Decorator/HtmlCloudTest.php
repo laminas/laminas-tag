@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:disable WebimpressCodingStandard.Arrays.DoubleArrow, SlevomatCodingStandard.TypeHints.DeclareStrictTypes.IncorrectWhitespaceBeforeDeclare, Squiz.Commenting.FunctionComment.Missing
 
 declare(strict_types=1);
 
@@ -18,33 +18,29 @@ class HtmlCloudTest extends TestCase
 
         $this->assertEquals(
             '<ul class="laminas-tag-cloud">foo bar</ul>',
-            $decorator->render(
-                [
-                    'foo',
-                    'bar',
-                ]
-            )
+            $decorator->render([
+                'foo',
+                'bar',
+            ])
         );
     }
 
     public function testNestedTags(): void
     {
         $decorator = new Decorator\HtmlCloud();
-        $decorator->setHtmlTags(
-            [
-                'span',
-                'div' => ['id' => 'tag-cloud'],
-            ]
-        );
+        $decorator->setHtmlTags([
+            'span',
+            'div' => [
+                'id' => 'tag-cloud',
+            ],
+        ]);
 
         $this->assertEquals(
             '<div id="tag-cloud"><span>foo bar</span></div>',
-            $decorator->render(
-                [
-                    'foo',
-                    'bar',
-                ]
-            )
+            $decorator->render([
+                'foo',
+                'bar',
+            ])
         );
     }
 
@@ -55,12 +51,10 @@ class HtmlCloudTest extends TestCase
 
         $this->assertEquals(
             '<ul class="laminas-tag-cloud">foo-bar</ul>',
-            $decorator->render(
-                [
-                    'foo',
-                    'bar',
-                ]
-            )
+            $decorator->render([
+                'foo',
+                'bar',
+            ])
         );
     }
 
@@ -122,6 +116,7 @@ class HtmlCloudTest extends TestCase
     {
         $decorator = new Decorator\HtmlCloud(['options' => 'foobar']);
         // In case would fail due to an error
+        $this->assertInstanceOf(Decorator\HtmlCloud::class, $decorator);
     }
 
     /** @psalm-return array<array-key, array{0: string[]|array<string, array>}> */
