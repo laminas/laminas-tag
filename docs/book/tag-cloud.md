@@ -10,13 +10,13 @@ via a configuration sturcture (either an array or an instance of `Traversable`).
 
 The following options are available:
 
-Option | Description
------- | ------
-`cloudDecorator` | Defines the decorator for the cloud. Can either be the name of the class which should be loaded by the plugin manager, an instance of `Laminas\Tag\Cloud\Decorator\AbstractCloud` or an array containing the decorator under the key decorator and optionally an array under the key options, which will be passed to the decorator’s constructor.
-`tagDecorator` | Defines the decorator for individual tags. This can either be the name of the class which should be loaded by the plugin manager, an instance of `Laminas\Tag\Cloud\Decorator\AbstractTag` or an array containing the decorator under the key decorator and optionally an array under the key options, which will be passed to the decorator’s constructor.
-`decoratorPluginManager` | A different plugin manager to use. Must be an instance of `Laminas\ServiceManager\AbstractPluginManager`.
-`itemList` | A different item list to use. Must be an instance of `Laminas\Tag\ItemList`.
-`tags` |  Array of tags to assign to the cloud. Each tag must either implement `Laminas\Tag\TaggableInterface` or be an array which can be used to instantiate `Laminas\Tag\Item`.
+| Option                   | Description                                                                                                                                                                                                                                                                                                                                                 |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cloudDecorator`         | Defines the decorator for the cloud. Can either be the name of the class which should be loaded by the plugin manager, an instance of `Laminas\Tag\Cloud\Decorator\AbstractCloud` or an array containing the decorator under the key decorator and optionally an array under the key options, which will be passed to the decorator’s constructor.          |
+| `tagDecorator`           | Defines the decorator for individual tags. This can either be the name of the class which should be loaded by the plugin manager, an instance of `Laminas\Tag\Cloud\Decorator\AbstractTag` or an array containing the decorator under the key decorator and optionally an array under the key options, which will be passed to the decorator’s constructor. |
+| `decoratorPluginManager` | A different plugin manager to use. Must be an instance of `Laminas\ServiceManager\AbstractPluginManager`.                                                                                                                                                                                                                                                   |
+| `itemList`               | A different item list to use. Must be an instance of `Laminas\Tag\ItemList`.                                                                                                                                                                                                                                                                                |
+| `tags`                   | Array of tags to assign to the cloud. Each tag must either implement `Laminas\Tag\TaggableInterface` or be an array which can be used to instantiate `Laminas\Tag\Item`.                                                                                                                                                                                    |
 
 ## Using Laminas\\Tag\\Cloud
 
@@ -134,13 +134,13 @@ the corresponding one will automatically be enabled.
 
 The following configuration options are available:
 
-Option | Default | Description
------- | ------- | -----------
-`fontSizeUnit` | `px` | Defines the font-size unit used for all font-sizes. The possible values are: em, ex, px, in, cm, mm, pt, pc and %.
-`minFontSize` | `10` | The minimum font-size distributed through the tags (must be numeric).
-`maxFontSize` | `20` | The maximum font-size distributed through the tags (must be numeric).
-`classList` | `null` | An array of classes distributed through the tags.
-`htmlTags` | `array('li')` | An array of HTML tags surrounding the anchor. Each element can either be a string, which is used as element type, or an array containing an attribute list for the element, defined as key/value pair. In this case, the array key is used as element type.
+| Option         | Default       | Description                                                                                                                                                                                                                                                 |
+| -------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fontSizeUnit` | `px`          | Defines the font-size unit used for all font-sizes. The possible values are: em, ex, px, in, cm, mm, pt, pc and %.                                                                                                                                          |
+| `minFontSize`  | `10`          | The minimum font-size distributed through the tags (must be numeric).                                                                                                                                                                                       |
+| `maxFontSize`  | `20`          | The maximum font-size distributed through the tags (must be numeric).                                                                                                                                                                                       |
+| `classList`    | `null`        | An array of classes distributed through the tags.                                                                                                                                                                                                           |
+| `htmlTags`     | `array('li')` | An array of HTML tags surrounding the anchor. Each element can either be a string, which is used as element type, or an array containing an attribute list for the element, defined as key/value pair. In this case, the array key is used as element type. |
 
 The following example shows how to create a tag cloud with a customized HTML tag decorator.
 
@@ -202,10 +202,10 @@ element and add no separation. Like the tag decorator, you can define multiple
 surrounding HTML tags and additionally define a separator. The available options
 are:
 
-Option | Default | Description
------- | ------- | -----------
-`separator` | `' '` (a whitespace) | Defines the separator which is placed between all tags.
-`htmlTags` | `array('ul' => array('class' => 'laminas-tag-cloud'))` | An array of HTML tags surrounding all tags. Each element can either be a string, which is used as element type, or an array containing an attribute list for the element, defined as key/value pair. In this case, the array key is used as element type.
+| Option      | Default                                                | Description                                                                                                                                                                                                                                               |
+| ----------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `separator` | `' '` (a whitespace)                                   | Defines the separator which is placed between all tags.                                                                                                                                                                                                   |
+| `htmlTags`  | `array('ul' => array('class' => 'laminas-tag-cloud'))` | An array of HTML tags surrounding all tags. Each element can either be a string, which is used as element type, or an array containing an attribute list for the element, defined as key/value pair. In this case, the array key is used as element type. |
 
 ```php
 // Create the cloud and assign static tags to it
