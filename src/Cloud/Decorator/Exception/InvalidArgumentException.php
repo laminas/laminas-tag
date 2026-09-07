@@ -6,6 +6,7 @@ namespace Laminas\Tag\Cloud\Decorator\Exception;
 
 use Laminas\Tag\Exception;
 
-final class InvalidArgumentException extends Exception\InvalidArgumentException implements ExceptionInterface
+/** @psalm-suppress ClassMustBeFinal */
+class InvalidArgumentException extends Exception\InvalidArgumentException implements ExceptionInterface
 {
 }

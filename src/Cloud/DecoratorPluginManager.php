@@ -8,6 +8,7 @@ use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 use Override;
+use RuntimeException;
 use Zend\Tag\Cloud\Decorator\HtmlCloud;
 use Zend\Tag\Cloud\Decorator\HtmlTag;
 
@@ -80,6 +81,25 @@ class DecoratorPluginManager extends AbstractPluginManager
                 $this->instanceOf,
                 is_object($instance) ? $instance::class : gettype($instance)
             ));
+        }
+    }
+
+    /**
+     * Validate the plugin is of the expected type (v2).
+     *
+     * Proxies to `validate()`; exists solely for BC
+     *
+     * @psalm-suppress PossiblyUnusedMethod
+     * @param mixed $instance
+     * @return void
+     * @throws InvalidServiceException
+     */
+    public function validatePlugin($instance)
+    {
+        try {
+            $this->validate($instance);
+        } catch (InvalidServiceException $e) {
+            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
 }
