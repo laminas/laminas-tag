@@ -22,8 +22,6 @@ use function sprintf;
  * Enforces that decorators retrieved are instances of
  * Decorator\DecoratorInterface. Additionally, it registers a number of default
  * decorators available.
- *
- * @psalm-suppress ClassMustBeFinal
  */
 class DecoratorPluginManager extends AbstractPluginManager
 {

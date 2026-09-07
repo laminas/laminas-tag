@@ -89,6 +89,11 @@
       <code><![CDATA[getHTMLTags]]></code>
     </UndefinedMethod>
   </file>
+  <file src="src/Cloud/Decorator/Exception/InvalidArgumentException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[InvalidArgumentException]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="src/Cloud/Decorator/HtmlCloud.php">
     <DocblockTypeContradiction>
       <code><![CDATA[is_array($tags)]]></code>
@@ -163,6 +168,9 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Cloud/DecoratorPluginManager.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[DecoratorPluginManager]]></code>
+    </ClassMustBeFinal>
     <MissingTemplateParam>
       <code><![CDATA[DecoratorPluginManager]]></code>
     </MissingTemplateParam>
@@ -198,7 +206,25 @@
       <code><![CDATA[HtmlTag]]></code>
     </UndefinedClass>
   </file>
+  <file src="src/Exception/InvalidAttributeNameException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[InvalidAttributeNameException]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Exception/InvalidElementNameException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[InvalidElementNameException]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Exception/OutOfBoundsException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[OutOfBoundsException]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="src/Item.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Item]]></code>
+    </ClassMustBeFinal>
     <DocblockTypeContradiction>
       <code><![CDATA[$this->title === null]]></code>
       <code><![CDATA[$this->weight === null]]></code>

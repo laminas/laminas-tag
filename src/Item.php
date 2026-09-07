@@ -17,7 +17,6 @@ use function method_exists;
 use function strtolower;
 
 /**
- * @psalm-suppress ClassMustBeFinal
  * @psalm-type TagShape = array{
  *      title: string,
  *      weight: numeric,

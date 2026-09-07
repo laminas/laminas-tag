@@ -6,7 +6,6 @@ namespace Laminas\Tag\Exception;
 
 use DomainException;
 
-/** @psalm-suppress ClassMustBeFinal */
 class InvalidAttributeNameException extends DomainException implements ExceptionInterface
 {
 }
