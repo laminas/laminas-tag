@@ -6,6 +6,6 @@ namespace Laminas\Tag\Exception;
 
 use DomainException;
 
-class InvalidElementNameException extends DomainException implements ExceptionInterface
+final class InvalidElementNameException extends DomainException implements ExceptionInterface
 {
 }

@@ -8,6 +8,7 @@ use ArrayAccess;
 use Countable;
 use Laminas\Tag\Exception\InvalidArgumentException;
 use Laminas\Tag\Exception\OutOfBoundsException;
+use Override;
 use ReturnTypeWillChange;
 use SeekableIterator;
 
@@ -39,8 +40,10 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
     /**
      * Count all items
      *
+     * @psalm-suppress PossiblyUnusedMethod
      * @return int
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function count()
     {
@@ -84,17 +87,17 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
             }
 
             // Calculate the thresholds
-            $steps      = count($values);
-            $delta      = ($maxWeight - $minWeight) / ($steps - 1);
+            $steps      = (float) count($values);
+            $delta      = ($maxWeight - $minWeight) / ($steps - 1.0);
             $thresholds = [];
 
             for ($i = 0; $i < $steps; $i++) {
-                $thresholds[$i] = floor(100 * log(($minWeight + $i * $delta) + 2));
+                $thresholds[$i] = floor(100.0 * log(($minWeight + (float) $i * $delta) + 2.0));
             }
 
             // Then assign the weight values
             foreach ($this->items as $item) {
-                $threshold = floor(100 * log($item->getWeight() + 2));
+                $threshold = floor(100.0 * log($item->getWeight() + 2.0));
 
                 for ($i = 0; $i < $steps; $i++) {
                     if ($threshold <= $thresholds[$i]) {
@@ -113,6 +116,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * @throws OutOfBoundsException When the seek position is invalid.
      * @return void
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function seek($index)
     {
@@ -134,6 +138,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return TaggableInterface|false
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function current()
     {
@@ -145,6 +150,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return TaggableInterface|false
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function next()
     {
@@ -153,11 +159,10 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
 
     /**
      * Return the key of the current element
-     *
-     * @return int
      */
+    #[Override]
     #[ReturnTypeWillChange]
-    public function key()
+    public function key(): int|null
     {
         return key($this->items);
     }
@@ -167,6 +172,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return bool
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function valid()
     {
@@ -178,6 +184,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      *
      * @return void
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function rewind()
     {
@@ -190,6 +197,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * @param int $offset
      * @return bool
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function offsetExists($offset)
     {
@@ -202,6 +210,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * @param int $offset
      * @return TaggableInterface
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function offsetGet($offset)
     {
@@ -216,6 +225,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * @return void
      * @throws OutOfBoundsException When item does not implement Laminas\Tag\TaggableInterface.
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
@@ -238,6 +248,7 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
      * @param int $offset
      * @return void
      */
+    #[Override]
     #[ReturnTypeWillChange]
     public function offsetUnset($offset)
     {

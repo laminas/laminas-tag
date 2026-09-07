@@ -6,6 +6,6 @@ namespace Laminas\Tag\Exception;
 
 use DomainException;
 
-class InvalidAttributeNameException extends DomainException implements ExceptionInterface
+final class InvalidAttributeNameException extends DomainException implements ExceptionInterface
 {
 }

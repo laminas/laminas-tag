@@ -7,7 +7,7 @@ namespace Laminas\Tag\Cloud;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
-use RuntimeException;
+use Override;
 use Zend\Tag\Cloud\Decorator\HtmlCloud;
 use Zend\Tag\Cloud\Decorator\HtmlTag;
 
@@ -21,6 +21,8 @@ use function sprintf;
  * Enforces that decorators retrieved are instances of
  * Decorator\DecoratorInterface. Additionally, it registers a number of default
  * decorators available.
+ *
+ * @psalm-suppress ClassMustBeFinal
  */
 class DecoratorPluginManager extends AbstractPluginManager
 {
@@ -68,6 +70,7 @@ class DecoratorPluginManager extends AbstractPluginManager
      * @param mixed $instance
      * @throws InvalidServiceException
      */
+    #[Override]
     public function validate($instance)
     {
         if (! $instance instanceof $this->instanceOf) {
@@ -77,23 +80,6 @@ class DecoratorPluginManager extends AbstractPluginManager
                 $this->instanceOf,
                 is_object($instance) ? $instance::class : gettype($instance)
             ));
-        }
-    }
-
-    /**
-     * Validate the plugin is of the expected type (v2).
-     *
-     * Proxies to `validate()`.
-     *
-     * @param mixed $instance
-     * @throws InvalidServiceException
-     */
-    public function validatePlugin($instance)
-    {
-        try {
-            $this->validate($instance);
-        } catch (InvalidServiceException $e) {
-            throw new RuntimeException($e->getMessage(), $e->getCode(), $e);
         }
     }
 }

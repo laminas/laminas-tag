@@ -19,7 +19,7 @@ use LaminasTest\Tag\Cloud\TestAsset\TagDummy;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class CloudTest extends TestCase
+final class CloudTest extends TestCase
 {
     public function testGetAndSetItemList(): void
     {

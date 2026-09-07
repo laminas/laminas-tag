@@ -10,7 +10,7 @@ use Laminas\Tag\Exception\InvalidAttributeNameException;
 use Laminas\Tag\Exception\InvalidElementNameException;
 use PHPUnit\Framework\TestCase;
 
-class HtmlCloudTest extends TestCase
+final class HtmlCloudTest extends TestCase
 {
     public function testDefaultOutput(): void
     {

@@ -12,7 +12,7 @@ use Laminas\Tag\Exception\InvalidAttributeNameException;
 use Laminas\Tag\Exception\InvalidElementNameException;
 use PHPUnit\Framework\TestCase;
 
-class HtmlTagTest extends TestCase
+final class HtmlTagTest extends TestCase
 {
     public function testDefaultOutput(): void
     {

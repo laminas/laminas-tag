@@ -5,6 +5,8 @@ declare(strict_types=1);
 
 namespace Laminas\Tag\Cloud\Decorator;
 
+use Override;
+
 use function gettype;
 use function implode;
 use function is_array;
@@ -82,6 +84,7 @@ class HtmlCloud extends AbstractCloud
      * @throws Exception\InvalidArgumentException
      * @return string
      */
+    #[Override]
     public function render($tags)
     {
         if (! is_array($tags)) {

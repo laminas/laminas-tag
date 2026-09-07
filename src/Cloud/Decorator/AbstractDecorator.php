@@ -119,7 +119,7 @@ abstract class AbstractDecorator implements Decorator
     public function getEscaper()
     {
         if (null === $this->escaper) {
-            $this->setEscaper(new Escaper($this->getEncoding()));
+            $this->setEscaper(new Escaper($this->getEncoding() ?: null));
         }
         return $this->escaper;
     }
@@ -127,8 +127,9 @@ abstract class AbstractDecorator implements Decorator
     /**
      * Validate an HTML element name
      *
-     * @param  string $name
+     * @param string $name
      * @throws Exception\InvalidElementNameException
+     * @return void
      */
     protected function validateElementName($name)
     {
@@ -144,8 +145,9 @@ abstract class AbstractDecorator implements Decorator
     /**
      * Validate an HTML attribute name
      *
-     * @param  string $name
+     * @param string $name
      * @throws Exception\InvalidAttributeNameException
+     * @return void
      */
     protected function validateAttributeName($name)
     {
