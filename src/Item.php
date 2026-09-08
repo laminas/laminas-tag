@@ -182,7 +182,6 @@ class Item implements TaggableInterface
     /**
      * Defined by Laminas\Tag\TaggableInterface
      *
-     * @psalm-suppress ImplementedReturnTypeMismatch
      * @param  string $name
      * @param  mixed  $value
      * @return Item

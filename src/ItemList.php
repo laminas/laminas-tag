@@ -40,7 +40,6 @@ class ItemList implements Countable, SeekableIterator, ArrayAccess
     /**
      * Count all items
      *
-     * @psalm-suppress PossiblyUnusedMethod
      * @return int
      */
     #[Override]

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace LaminasTest\Tagfinal\Cloud\Decorator;
+namespace LaminasTest\Tag\Cloud\Decorator;
 
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\ServiceManager\Test\CommonPluginManagerTrait;

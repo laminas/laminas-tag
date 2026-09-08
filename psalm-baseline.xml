@@ -201,6 +201,9 @@
       <code><![CDATA[$factories]]></code>
       <code><![CDATA[$instanceOf]]></code>
     </NonInvariantDocblockPropertyType>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[validatePlugin]]></code>
+    </PossiblyUnusedMethod>
     <UndefinedClass>
       <code><![CDATA[HtmlCloud]]></code>
       <code><![CDATA[HtmlTag]]></code>
@@ -232,6 +235,9 @@
       <code><![CDATA[is_numeric($weight)]]></code>
       <code><![CDATA[is_string($title)]]></code>
     </DocblockTypeContradiction>
+    <ImplementedReturnTypeMismatch>
+      <code><![CDATA[Item]]></code>
+    </ImplementedReturnTypeMismatch>
     <MixedArgumentTypeCoercion>
       <code><![CDATA[$options]]></code>
     </MixedArgumentTypeCoercion>
@@ -268,6 +274,9 @@
       <code><![CDATA[$minWeight]]></code>
       <code><![CDATA[$minWeight]]></code>
     </PossiblyNullOperand>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[count]]></code>
+    </PossiblyUnusedMethod>
     <PossiblyUnusedReturnValue>
       <code><![CDATA[TaggableInterface|false]]></code>
     </PossiblyUnusedReturnValue>

@@ -87,7 +87,6 @@ class DecoratorPluginManager extends AbstractPluginManager
      *
      * Proxies to `validate()`; exists solely for BC
      *
-     * @psalm-suppress PossiblyUnusedMethod
      * @param mixed $instance
      * @return void
      * @throws InvalidServiceException
