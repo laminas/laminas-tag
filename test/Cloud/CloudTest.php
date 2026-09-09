@@ -19,7 +19,7 @@ use LaminasTest\Tag\Cloud\TestAsset\TagDummy;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class CloudTest extends TestCase
+final class CloudTest extends TestCase
 {
     public function testGetAndSetItemList(): void
     {
@@ -267,7 +267,8 @@ class CloudTest extends TestCase
 
     public function testSkipOptions(): void
     {
-        $this->getCloud(['options' => 'foobar']);
+        $cloud = $this->getCloud(['options' => 'foobar']);
+        $this->assertInstanceOf(Cloud::class, $cloud);
     }
 
     public function testRender(): void

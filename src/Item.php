@@ -6,6 +6,7 @@ namespace Laminas\Tag;
 
 use Laminas\Stdlib\ArrayUtils;
 use Laminas\Tag\Exception\InvalidArgumentException;
+use Override;
 use Traversable;
 
 use function in_array;
@@ -112,6 +113,7 @@ class Item implements TaggableInterface
      *
      * @return string
      */
+    #[Override]
     public function getTitle()
     {
         return $this->title;
@@ -139,6 +141,7 @@ class Item implements TaggableInterface
      *
      * @return float
      */
+    #[Override]
     public function getWeight()
     {
         return $this->weight;
@@ -183,6 +186,7 @@ class Item implements TaggableInterface
      * @param  mixed  $value
      * @return Item
      */
+    #[Override]
     public function setParam($name, $value)
     {
         $this->params[$name] = $value;
@@ -195,6 +199,7 @@ class Item implements TaggableInterface
      * @param  string $name
      * @return mixed
      */
+    #[Override]
     public function getParam($name)
     {
         if (isset($this->params[$name])) {

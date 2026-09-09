@@ -6,13 +6,15 @@ namespace LaminasTest\Tag\Cloud\TestAsset;
 
 use Laminas\Tag\Cloud\Decorator\HtmlTag;
 
-class TagDummy extends HtmlTag
+final class TagDummy extends HtmlTag
 {
     // phpcs:ignore
     protected $_foo;
 
-    /** @param mixed $value */
-    public function setFoo($value)
+    /**
+     * @param mixed $value
+     */
+    public function setFoo($value): void
     {
         $this->_foo = $value;
     }

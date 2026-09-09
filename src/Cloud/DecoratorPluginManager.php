@@ -7,6 +7,7 @@ namespace Laminas\Tag\Cloud;
 use Laminas\ServiceManager\AbstractPluginManager;
 use Laminas\ServiceManager\Exception\InvalidServiceException;
 use Laminas\ServiceManager\Factory\InvokableFactory;
+use Override;
 use RuntimeException;
 use Zend\Tag\Cloud\Decorator\HtmlCloud;
 use Zend\Tag\Cloud\Decorator\HtmlTag;
@@ -68,6 +69,7 @@ class DecoratorPluginManager extends AbstractPluginManager
      * @param mixed $instance
      * @throws InvalidServiceException
      */
+    #[Override]
     public function validate($instance)
     {
         if (! $instance instanceof $this->instanceOf) {
@@ -83,9 +85,10 @@ class DecoratorPluginManager extends AbstractPluginManager
     /**
      * Validate the plugin is of the expected type (v2).
      *
-     * Proxies to `validate()`.
+     * Proxies to `validate()`; exists solely for BC
      *
      * @param mixed $instance
+     * @return void
      * @throws InvalidServiceException
      */
     public function validatePlugin($instance)

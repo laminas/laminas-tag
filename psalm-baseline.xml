@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
   <file src="src/Cloud.php">
     <DocblockTypeContradiction>
       <code><![CDATA[$this->decorators === null]]></code>
@@ -50,10 +50,6 @@
       <code><![CDATA[$this]]></code>
       <code><![CDATA[$this]]></code>
     </LessSpecificReturnStatement>
-    <MissingReturnType>
-      <code><![CDATA[validateAttributeName]]></code>
-      <code><![CDATA[validateElementName]]></code>
-    </MissingReturnType>
     <MixedArgument>
       <code><![CDATA[$htmlTag]]></code>
       <code><![CDATA[$htmlTag]]></code>
@@ -92,6 +88,11 @@
     <UndefinedMethod>
       <code><![CDATA[getHTMLTags]]></code>
     </UndefinedMethod>
+  </file>
+  <file src="src/Cloud/Decorator/Exception/InvalidArgumentException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[InvalidArgumentException]]></code>
+    </ClassMustBeFinal>
   </file>
   <file src="src/Cloud/Decorator/HtmlCloud.php">
     <DocblockTypeContradiction>
@@ -167,9 +168,9 @@
     </RedundantConditionGivenDocblockType>
   </file>
   <file src="src/Cloud/DecoratorPluginManager.php">
-    <MissingReturnType>
-      <code><![CDATA[validatePlugin]]></code>
-    </MissingReturnType>
+    <ClassMustBeFinal>
+      <code><![CDATA[DecoratorPluginManager]]></code>
+    </ClassMustBeFinal>
     <MissingTemplateParam>
       <code><![CDATA[DecoratorPluginManager]]></code>
     </MissingTemplateParam>
@@ -208,7 +209,25 @@
       <code><![CDATA[HtmlTag]]></code>
     </UndefinedClass>
   </file>
+  <file src="src/Exception/InvalidAttributeNameException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[InvalidAttributeNameException]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Exception/InvalidElementNameException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[InvalidElementNameException]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="src/Exception/OutOfBoundsException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[OutOfBoundsException]]></code>
+    </ClassMustBeFinal>
+  </file>
   <file src="src/Item.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Item]]></code>
+    </ClassMustBeFinal>
     <DocblockTypeContradiction>
       <code><![CDATA[$this->title === null]]></code>
       <code><![CDATA[$this->weight === null]]></code>
@@ -216,6 +235,9 @@
       <code><![CDATA[is_numeric($weight)]]></code>
       <code><![CDATA[is_string($title)]]></code>
     </DocblockTypeContradiction>
+    <ImplementedReturnTypeMismatch>
+      <code><![CDATA[Item]]></code>
+    </ImplementedReturnTypeMismatch>
     <MixedArgumentTypeCoercion>
       <code><![CDATA[$options]]></code>
     </MixedArgumentTypeCoercion>
@@ -259,11 +281,6 @@
       <code><![CDATA[TaggableInterface|false]]></code>
     </PossiblyUnusedReturnValue>
   </file>
-  <file src="src/TaggableInterface.php">
-    <MissingReturnType>
-      <code><![CDATA[setParam]]></code>
-    </MissingReturnType>
-  </file>
   <file src="test/Cloud/CloudTest.php">
     <DeprecatedClass>
       <code><![CDATA[new SMConfig([
@@ -279,38 +296,23 @@
     </UndefinedMethod>
   </file>
   <file src="test/Cloud/Decorator/HtmlCloudTest.php">
-    <MixedInferredReturnType>
-      <code><![CDATA[array<array-key, array{0: array<string, map>}>]]></code>
-    </MixedInferredReturnType>
     <UndefinedDocblockClass>
       <code><![CDATA[array<array-key, array{0: array<string, map>}>]]></code>
     </UndefinedDocblockClass>
-    <UnusedVariable>
-      <code><![CDATA[$decorator]]></code>
-    </UnusedVariable>
   </file>
   <file src="test/Cloud/Decorator/HtmlTagTest.php">
     <InvalidArgument>
       <code><![CDATA['foo']]></code>
       <code><![CDATA['foo']]></code>
     </InvalidArgument>
-    <MixedInferredReturnType>
-      <code><![CDATA[array<array-key, array{0: array<string, map>}>]]></code>
-    </MixedInferredReturnType>
     <UndefinedDocblockClass>
       <code><![CDATA[array<array-key, array{0: array<string, map>}>]]></code>
     </UndefinedDocblockClass>
-    <UnusedVariable>
-      <code><![CDATA[$decorator]]></code>
-    </UnusedVariable>
   </file>
   <file src="test/Cloud/TestAsset/CloudDummy.php">
     <MissingPropertyType>
       <code><![CDATA[$_foo]]></code>
     </MissingPropertyType>
-    <MissingReturnType>
-      <code><![CDATA[setFoo]]></code>
-    </MissingReturnType>
     <PossiblyUnusedMethod>
       <code><![CDATA[getFoo]]></code>
       <code><![CDATA[setFoo]]></code>
@@ -323,9 +325,6 @@
     <MissingPropertyType>
       <code><![CDATA[$_foo]]></code>
     </MissingPropertyType>
-    <MissingReturnType>
-      <code><![CDATA[setFoo]]></code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor>
       <code><![CDATA[CloudDummy1]]></code>
     </PropertyNotSetInConstructor>
@@ -337,9 +336,6 @@
     <MissingPropertyType>
       <code><![CDATA[$_foo]]></code>
     </MissingPropertyType>
-    <MissingReturnType>
-      <code><![CDATA[setFoo]]></code>
-    </MissingReturnType>
     <PropertyNotSetInConstructor>
       <code><![CDATA[CloudDummy2]]></code>
     </PropertyNotSetInConstructor>
@@ -351,9 +347,6 @@
     <MissingPropertyType>
       <code><![CDATA[$_foo]]></code>
     </MissingPropertyType>
-    <MissingReturnType>
-      <code><![CDATA[setFoo]]></code>
-    </MissingReturnType>
     <PossiblyUnusedMethod>
       <code><![CDATA[getFoo]]></code>
       <code><![CDATA[setFoo]]></code>

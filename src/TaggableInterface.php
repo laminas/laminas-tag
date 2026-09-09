@@ -25,6 +25,7 @@ interface TaggableInterface
      *
      * @param string $name
      * @param string $value
+     * @return void
      */
     public function setParam($name, $value);
 

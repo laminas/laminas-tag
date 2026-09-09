@@ -7,6 +7,7 @@ namespace Laminas\Tag\Cloud\Decorator;
 
 use Laminas\Tag\Cloud\Decorator\Exception\InvalidArgumentException;
 use Laminas\Tag\ItemList;
+use Override;
 
 use function count;
 use function gettype;
@@ -217,6 +218,7 @@ class HtmlTag extends AbstractTag
      * @throws InvalidArgumentException
      * @return array
      */
+    #[Override]
     public function render($tags)
     {
         if (! $tags instanceof ItemList) {

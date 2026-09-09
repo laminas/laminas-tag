@@ -9,7 +9,7 @@ use Laminas\Tag;
 use Laminas\Tag\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class ItemTest extends TestCase
+final class ItemTest extends TestCase
 {
     public function testConstructor(): void
     {
@@ -85,8 +85,8 @@ class ItemTest extends TestCase
 
     public function testSkipOptions(): void
     {
-        new Tag\Item(['title' => 'foo', 'weight' => 1, 'param' => 'foobar']);
-        // In case would fail due to an error
+        $tag = new Tag\Item(['title' => 'foo', 'weight' => 1, 'param' => 'foobar']);
+        $this->assertInstanceOf(Tag\Item::class, $tag);
     }
 
     public function testInvalidOptions(): void

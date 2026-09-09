@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 use function count;
 
-class ItemListTest extends TestCase
+final class ItemListTest extends TestCase
 {
     public function testArrayAccessAndCount(): void
     {
@@ -40,6 +40,7 @@ class ItemListTest extends TestCase
             $list[] = $this->generateTagItem($value);
         }
 
+        /** @var int|string $key */
         foreach ($list as $key => $item) {
             $this->assertEquals($item->getTitle(), $values[$key]);
         }
@@ -122,6 +123,7 @@ class ItemListTest extends TestCase
         $list->spreadWeightValues([]);
     }
 
+    // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.UselessAnnotation
     /** @param numeric $weight */
     private function generateTagItem(string $title = 'foo', int|float|string $weight = 1): Tag\Item
     {

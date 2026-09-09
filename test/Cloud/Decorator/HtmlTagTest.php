@@ -12,7 +12,7 @@ use Laminas\Tag\Exception\InvalidAttributeNameException;
 use Laminas\Tag\Exception\InvalidElementNameException;
 use PHPUnit\Framework\TestCase;
 
-class HtmlTagTest extends TestCase
+final class HtmlTagTest extends TestCase
 {
     public function testDefaultOutput(): void
     {
@@ -154,7 +154,7 @@ class HtmlTagTest extends TestCase
     public function testSkipOptions(): void
     {
         $decorator = new Decorator\HtmlTag(['options' => 'foobar']);
-        // In case would fail due to an error
+        $this->assertInstanceOf(Decorator\HtmlTag::class, $decorator);
     }
 
     // @codingStandardsIgnoreStart
