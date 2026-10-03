@@ -23,7 +23,7 @@ final class HtmlTagTest extends TestCase
             '<li><a href="http://third" style="font-size: 20px;">baz</a></li>',
         ];
 
-        $this->assertEquals($decorator->render($this->_getTagList()), $expected);
+        $this->assertEquals($decorator->render($this->getTagList()), $expected);
     }
 
     public function testNestedTags(): void
@@ -36,7 +36,7 @@ final class HtmlTagTest extends TestCase
             '<li><span class="tag"><a href="http://third" style="font-size: 20px;">baz</a></span></li>',
         ];
 
-        $this->assertEquals($decorator->render($this->_getTagList()), $expected);
+        $this->assertEquals($decorator->render($this->getTagList()), $expected);
     }
 
     public function testFontSizeSpread(): void
@@ -52,7 +52,7 @@ final class HtmlTagTest extends TestCase
             '<li><a href="http://third" style="font-size: 50pt;">baz</a></li>',
         ];
 
-        $this->assertEquals($decorator->render($this->_getTagList()), $expected);
+        $this->assertEquals($decorator->render($this->getTagList()), $expected);
     }
 
     public function testClassListSpread(): void
@@ -66,7 +66,7 @@ final class HtmlTagTest extends TestCase
             '<li><a href="http://third" class="large">baz</a></li>',
         ];
 
-        $this->assertEquals($decorator->render($this->_getTagList()), $expected);
+        $this->assertEquals($decorator->render($this->getTagList()), $expected);
     }
 
     public function testEmptyClassList(): void
@@ -157,10 +157,8 @@ final class HtmlTagTest extends TestCase
         $this->assertInstanceOf(Decorator\HtmlTag::class, $decorator);
     }
 
-    // @codingStandardsIgnoreStart
-    protected function _getTagList(): Tag\ItemList
+    protected function getTagList(): Tag\ItemList
     {
-        // @codingStandardsIgnoreEnd
         $list   = new Tag\ItemList();
         $list[] = new Tag\Item(['title' => 'foo', 'weight' => 1, 'params' => ['url' => 'http://first']]);
         $list[] = new Tag\Item(['title' => 'bar', 'weight' => 3, 'params' => ['url' => 'http://second']]);
