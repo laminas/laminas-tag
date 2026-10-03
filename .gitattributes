@@ -5,6 +5,7 @@
 /mkdocs.yml export-ignore
 /phpcs.xml export-ignore
 /phpunit.xml.dist export-ignore
+/structarmed.php export-ignore
 /test/ export-ignore
 /renovate.json
 /.laminas-ci.json
